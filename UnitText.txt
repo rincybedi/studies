@@ -1,0 +1,68 @@
+AUTOMATED tESTIMG:
+	-delpoy with more confidence, 
+	- less bug at prod build
+	3 tyeps : Unit, Integrated(external dependceis ) , End to End(using Ui)
+	
+	Unit Tets- test unit of app without external dependceis , NUnit, MsTest 
+	
+	MStest :
+	[testClass] , [TestMethod]
+	- defiane scenarios and expected behavior 
+	- for n exectuin path , have n test methods(n sceanrios)
+	  public class ReeservationTest
+    {
+        [TestMethod]
+        public void CanbeCancelledBy_isAdmin_ReturnsTrue  () // 1 sceanio
+        {
+            //arrange
+            Reservation obj = new Reservation();
+
+            //act
+            var result = obj.canBeCancelledBy(new User { isAdmin = true });
+
+            //assert
+            Assert.IsTrue(result);
+        }
+	}
+    Assert MS class  has several helper method slike AreEqual, IsFalse, InstanceOfType, IsNull
+	- passed or failed test
+
+
+--------------
+test methods anre public void and non static 
+testView(flat), testList(categories), yestResult(fo to previous test versions)
+when we run a test , some settings are configured  in a xml fle - TestConfiguration file (.testSettings)
+trx file gets generated for each test run
+you can create cuustom testSettings file with name prefix and other settinsg and ise it as active 
+u can debug test methods
+u can autogen tests by right click on method and selecting create nunit test
+that codegen file is incomplete, has testCOntext,  inconcusive ie expected is not passed
+u can run tests using msbuidlexe
+eg 
+/testcontainer : "dll file path"
+Sharing resources and cleanup test: for method, class and namespace:
+
+[TestInitiaklize]
+public void TestInitiaklize(){
+.........
+some initlaizations 
+}
+
+[Testmethod]
+A{}
+
+[Testmethod]
+B{}
+
+[TestCleanup]
+public void TestCleanup(){
+.........
+Dipose()
+}
+
+TestCleanup and TestInitiaklize both methods run once for both test methods((before and after)
+CollectionsAssert.Contains(items, item) 
+StringAssert
+[ClassInitialize[ and [ClassClaanup]
+ Assert.ThrowsException<System.ArgumentException>(() => account.Withdraw(20.0));
+ ===================

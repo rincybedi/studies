@@ -1,0 +1,37 @@
+
+Angualr CLI
+--------------------
+ng serve options 
+-o,  -w, -p, -lr, -ec(extract csss)
+------
+ng serve vs ng build
+
+ng serve :
+-complies n srever app from memory
+-doesnt not write build files to disk camt used for deploying 
+
+ng build:
+-compiles app folder to "dist"
+-for deloyment
+--------
+
+ng build --dev vs ng build --prod
+-dev has source maps files(to deug thru compreessed js + css files_), prod dont
+	but u can have sm for prod too by ng build --dev  -sm false or prod true
+-global styles are extracted to js file in dev , in prod to csss file
+-dev dioesnt have minifcation(removing whitespace, comments) and uglificatiobn(shortening var names) and treeshaking(removing unsued code)
+-prod has AOT compliation
+
+JIT vs AOT
+- Jit compiles the code when needed at run time (jsut in time)
+source map exploere
+- with aot, appln code is precomplied
+		complier code is roughly half of the angualr framwok , with aot we omit it  and reduces apl size
+		- the vendor bundle size is drastically reduced
+		- with prod build , we get aot compliation, np complier code
+-provide cimplation errors while building say:
+[innertext="gettesxxxt()" // wrong spelling ; with ng sreve ; doesnt giv eerror while command executing ; we only know the error at run time in browser dev toll window 
+
+ng serve --aot true  // immdeiate error 
+
+	

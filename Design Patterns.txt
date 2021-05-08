@@ -1,0 +1,61 @@
+Design patterns:Gang of Four
+	
+	Singleton :sealed class, GetInstance(), private constructor
+	printdetails from 2 0r 3 main Classes will instatntiate primary class n times
+	reason for sealing - we can have a nested derived singeltion clas	
+	ILog - LogException singletion method and controller overriding onException virtual methdo
+	static vs siongletion:
+	
+	Factory :
+	client - factory-product
+	factory clas- getEmpmanager(int EmpType)
+
+    Creational ppaterns - object creation pattern
+	Facrtory pattern -  creates objects wothout client knowing the creation detaisl 
+	SIngleton - cerate one n only ibject using private constuctor
+	
+	structural-class n object composition(inheritance used)
+	Composition
+	bridge - decoupel abstraction from implenetation so that two can vary indpendtly(uses interface)
+	
+	Adapter- bridge bw 2 incompatibel interfaces
+	Itarget(getProducts) , Adapter(implmentibg Itarget and caling Adaptee method and retuning products(with syscode)), Adaptee(which has syscode)
+	https://www.tutorialspoint.com/design_pattern/adapter_pattern.htm
+
+	behaviorla-communication bw objects
+	Observer- one to many relation, observer are notofoed immediatelky if some change happends to oobservabel
+	memento - restore state to previous state of object 
+	
+	
+	Bridge pattern :
+	Abstract class and Refined abstract class, Payment class and CardPayment/NetBankPayment with method makePaymen()
+	bridge to
+	Implemmetor and concrete Implemntor, IPyamentProcessor and SBIProcessor/AxisProcessor with processPayment()
+	
+	iin Payment class, add ref to Implementor
+	class abstract Payment{
+		IPyamentProcessor iprocessor;
+		abstract void makePaymen();
+	}
+	class CardPayment : payment{
+	void override makePaymen(){
+	iprocessor.processPayment("Card")
+	}
+	
+	.....
+	main(){
+	Payment order new CardPayment();
+	order.iprocessor  new SBIProcessor()
+	order.makePaymen();
+	}
+	
+
+    Prptotype deisgn pattern :
+
+create object copying  prototype of actual object
+subclass of interface use super.clone to create object 
+CloneFactory has factory method which takes the interface object  and call the common method (without know the type of subclass)
+	 
+	
+	
+	

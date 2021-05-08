@@ -1,0 +1,119 @@
+Mapping virtual path to physical path using Server.MapPath
+	Different page navigation techniques in asp.net Part 
+	Server.Transfer vs Response.Redirect vs Server.Execute
+	Asp.net session state
+	Cookie less sessions in asp.net Part 
+
+	viewstate - inspect code and we have _VIEWSTATE field whose value is the stored val of viewstate (base64 encoded)
+	by default all asp net controls(as compare to html controls) use this viewstate onternally to presevrb data : TextBox1.TextBox
+	viewstate  is only accesiblt ot 1 webform 
+	for transfering datat from 1webform to abother:
+	query strings, cookies, sesssion - single user gobal data  and appln-  multiuser global dara states
+
+	Global.asax has these global ebvents
+	Appln_start: when first request for a webform reaches to server, the aseemblies are loaded into memmory, then this event is fired
+	Response.Wrie("Anything)
+	close a chrome tab/ open a new brosweer/  session for a new session
+	Appln_End: after all sessiosn has ended
+	Applm_Error
+	SessionStart, SessionEnd
+	Sessionstate - default presreve time is 20 mins 
+
+	Difference between ViewState, SessionState and ApplicationState
+	Events in the life cycle of a web application : 3 levels:
+
+	Appln , Page, controls	
+	
+		Page events :
+
+	 PreInit:happens before page inititalization, Ispostback prop get set , master page theme set dynamically 
+	 Init: pgae init occurs after init of all control events , server controls are laoded with viewstates, used to read or initialize control props	
+	 InitCOmplete - after page init
+	 Preload
+	 Load : Page loads occurs before loading all controls 
+	 CONTROL EVNETS : 
+	 LoadComplete 
+	 PreRender
+	 Render
+	 Unload
+	 Error 
+	 
+	asp.net butoon has postabck event, textbox(AutoPostBack prop : faklse) has cached events (into viewstate) which fires when a postaback evenet occurs 
+	Validation Controls: COmpare, Customr, Range, RE, Required Val SUmmary 
+	Caching in asp.net=
+	IsPostback - Page prop to differentiate if page is posted for the first time or not 
+	CrossPostback - Button has prop - PostBackUrl
+	 Autopostback
+	 
+	PAGE NAVIGATION TECHNIQUES :
+	Server.Transfer ('', bool presservefORM) - 1 cycle/no address changes of URL bar / Request.Form or Page.PreviosPage/page on Same server
+	HttpCookie newco = new Cookie("NameOfCookie);
+	newco["name"]= "rincy";
+	Resposne.Cookies.Add(newco);
+	HttpCookie newco = Requesr.Cookies("Test");
+
+	session state :
+	Inproc(session state saved in in server memory - 20 mins else server will run out of memory ) asp.net session state mode - worker process(w3wp_)
+	Session state: by def, session uses cookies for storing session id to check if req is coming from same user
+	InProc( no need of serializan for complex objects/ best for web app hoseted in single server/seesion state data is lost of worker process is restarted or app pool in iis is restrted) vs outproc (for web farm)
+	StateServer asp.net session state mode - asp.net sate service, can be a dedicated server 
+	SQLServer asp.net session state mode 
+	Exception handling in asp.net Part 69
+
+	Asp.net Application state 
+	Cross page posting 
+	Error events - Server.GetLastError() in Page_Error event
+	Custom errors in asp.net Part -- CustomErrors config  (error - status code and redirects)
+		precendence - Page>Application>web config(custom errors for status codes)
+	log to db :
+	 private static void LogToDB(string log)
+		{
+			// ConfigurationManager class is in System.Configuration namespace
+			string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+			// SqlConnection is in System.Data.SqlClient namespace
+			using (SqlConnection con = new SqlConnection(connectionString))
+			{
+				SqlCommand cmd = new SqlCommand("spInsertLog", con);
+				// CommandType is in System.Data namespace
+				cmd.CommandType = CommandType.StoredProcedure;
+
+				SqlParameter parameter = new SqlParameter("@ExceptionMessage", log);
+				cmd.Parameters.Add(parameter);
+
+				con.Open();
+				cmd.ExecuteNonQuery();
+				con.Close();
+			
+		}
+	}
+
+	Sending emails - System.NetMail - MailMessage Class - COnfigure SMTP Server
+	Tracing .axd
+	Tracing in asp.net A real time eg
+ 
+	Application pools in IIS - WindowsIdentity.getCurrentName() from Pricincipal namespace
+	Application pools in IIS Security
+	An app pool has 1 or more web applications- there are 3-4 default app pools by asp.net, Each app pool has their own worker process.If 1 pool is down, other apps arent effected.
+	Each app  pool has a idenetiy . app pool is used for application isolation
+
+
+	Anonymous authentication -
+		User.Identity.IsAuthenticated / User.Identity.Type / User.Identity.Name
+	Anonymous authentication and asp.net impersonation IUSR
+	Windows authentication and authorization - <allow users/deny config -  <allow roles -User.IsInRole("admin")
+	Windows authentication and folder level authorization
+	Form Authentiaction - System.We.Security - FormAuthenrcation Class - Authenicate()
+	FormsAuthentication.HashPasswordForStoringInConfigFile
+	Un/Locking User Account
+	----
+	Create EventArgs class
+	Create EventHnadler delegate
+	Create Event using both
+	Create protected virtual method for raising the event
+	Delegate - pointer to event fucntion (type safe)
+	Event - variable of type delgate with event keywprd
+	COnsuming EVent -
+	Button1.CLick += new EventHandler(fucntionEventHandler); //EventHandler is delegate
+	delegate void EventHandler(object sender, EventArgs e) //args and type (signature)of delagate matches of fucntionEventHandler
+	void fucntionEventHandler(object sender, EventArgs e) // eg of fucntionEventHandler = Button1Click
+

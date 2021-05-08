@@ -1,0 +1,217 @@
+Ik Onkar
+.................
+System Design , COding, 
+C#,  MVC, Asp.net,  Entity Framework,  Web Api, Sql server
+Javascript, jquery, Vue, Angular, React, Express
+Mongodb, Dot Net Nuke, KendoUI, LINQ, SSRS
+
+--------------------------------
+	select into
+MapMvcAttributeRoutes
+polymorphism
+filters in mvc
+mvc over 3 layer
+eager loading vs lazy loading
+for comple relationship bw tables, which ef vbased approach?
+delagate
+e.preventDefault vs e.stopPro
+get vs post 
+	
+	
+	================================
+	jQuery: Js library , v - 3
+	
+	cloud upload
+	Manifest
+	OOPS
+	SSRS
+	SQL Server
+	LINQ - projection, filtering, group, element , 
+	
+
+	jenkins
+	system design
+	ES6
+	GCP Basics
+	REst api
+	NoSQl vs SQL
+	Databse scaling - horixonaly/vertical
+	Structured, Semi-structured and Unstructured data
+	ACID in DBMS/ Normalaisation
+	SOLID 
+	Cookies:
+		If it has no expiration, then it be lost. It will be treated as a Session cookie. 
+	async await:
+		in js:
+		The word “async” before a function means one simple thing: a function always returns a promise. 
+		The keyword await makes JavaScript wait until that promise settles and returns its result.
+		
+	Custom Authorize attribute
+	Constructor vs method
+
+	302 - redirect
+	200 - success
+	204 no content
+
+	400 bad request
+	404 no found
+	405 method not allowed
+	422 unprocesable entity
+	Ado.net
+	https://blog.elmah.io/debugging-system-net-webexception-the-remote-name-could-not-be-resolved/ dns 
+	ERROR
+	Data adapter vs Data reader 
+	Connectionless vs connected
+	Public or private default class
+	Abstract and interface
+	CTe
+	Pivot
+	Virtual
+	Rank
+	Mvc
+	Sp vs function
+	Dnn
+	Override, overload
+	Constructor
+	Cursor
+	Try catch va using
+	Example of overloadad
+	Ado. Net
+	Data adapter vs reader 
+	Connectionless vs connected
+	https://www.dotnettricks.com/learn/visualstudio/visual-studio-debug-vs-release-mode
+	Dependency Injection
+	angualr testing : it + describe + expect 
+	
+
+	concurerncy in db - chngeconflictexception
+	avoid : using refershmode enum of resolveall() to overweite currentvaleu, chagedvaleu or originalvalue,
+	us erowversion to avoid
+	ef adds function for sp and views and a result in complex type too
+	function: OnjectResult<Student>
+
+	excuting sp using ado.
+	DbContext is just a wrapper around ObjectContext.DbContext is just a set of APIs that are easier to use than the APIs exposed by ObjectContext.()	
+	
+	==============================================================
+	
+	MONOLITIC ARCH VS MICROSERVIECS
+
+	
+	Akshay Saini JS :
+	
+
+	=====================
+	Promise : function , race, all, chaining
+	let type of let
+	const.length == 0
+	arrow function?
+	array : first recurrinng
+	contiguos array
+	iife
+	map es5 vs 6
+	map vs set 
+	call apply bind
+
+	===========================
+
+	
+
+	ACID
+	atomic , consistent, isolated , durable
+
+
+---------------------------
+
+
+
+io/debugging-system-net-webexception-the-remote-name-could-not-be-resolved/
+
+=============================================================
+
+Extra:
+
+
+
+- yt: Auto deployment of web Applications by using jenkins msbuild and TFS
+
+TFS: team Foundaton Server - Source COntroll tool : for followig Agile methododlfy 
+(Application Life Cycle Management)ALM tool
+CVS: Concurrent version system : same as abve
+
+
+Build Tool - Ms Build :
+-----------------------------
+Ant was not customizablem MB Vuikld with vers 2.0 gave MsBuid tool ; 
+default inbuild tool now 
+sya, u want to build something and send mail to part group of users : this output filesa re abvailable at this locn or thos this was output errors n all. MsBuild is customizable for taht  
+
+Build soln- complie the code into execeutable at output folder :defined in properties->Build of Project 
+
+this project file(.csporj) is XML File have diff Imports/property groups//ItemGroups:
+say a business csporj have 10 cs files, ItemGroup will have have comolie command for each ;
+then there are refrences like Businesslayers refernce Dal, Utils etc ,
+then thre is import like Module.Build in our case(or can specify in Targets here itself)
+-------------------------
+Module.Build: UC , js , css and bin; specif sourcefiles and dest folder and include and exclludes
+  
+  <Includes Include="$(SourceWebsiteIncludesPath)\**\*.*;"></Includes>
+    <IncludesViews Include="$(SourceWebsiteIncludesUserControlPath)\*.ascx;" Exclude="$(SourceWebsiteIncludesUserControlPath)\AlphaCPQSkinMaintenance.ascx;
+                   $(SourceWebsiteIncludesUserControlPath)\AlphaCPQDashboardSkin.ascx;$(SourceWebsiteIncludesUserControlPath)\AlphaCPQPortalSkin.ascx;"></IncludesViews>   
+    
+	<Target Name="CopyBin">
+		<Copy SourceFiles="$(SourceWebsiteBinPath)\$(AssemblyName).dll" DestinationFolder="$(TargetWebsiteBinPath)"></Copy>
+		<Copy SourceFiles="$(SourceWebsiteBinPath)\$(AssemblyName).pdb" DestinationFolder="$(TargetWebsiteBinPath)"></Copy>
+	</Target>
+
+  <Target Name="CopyFiles">
+    <Copy SourceFiles="@(IncludesCustomHandlers)" DestinationFolder="$(TargetPDMPath)"></Copy>
+    <Copy SourceFiles="@(IncludesUserControls)" DestinationFolder="$(TargetUserControl)"></Copy>    
+    <Copy SourceFiles="@(Includes)" DestinationFolder="$(TargetPDMResourcePath)\Includes\%(RecursiveDir)"></Copy>
+
+
+UML :
+
+Clss Model:
+------
+class, attr, methods, relationshis 
+- : private, # protected, + punlic 
+Inheritance : Child ---|> Parent 
+Assocaition  : just  a realtion bw 2 class like: Order--uses----AdditonalCharge
+Aggreagtion : whole n parts: ----<> Project ---<> LI (But Li can still exist without having Project to exist)
+
+Composition: ---<filled diamond> staff rooms  ------<filled> School ,
+ if there is no school, no staffrooms as well 
+
+Multiplicity:
+0..1
+n
+1..*
+0..*
+
+
+Sequence: atm eg
+------------
+intercation in the order that takes place 
+how class/objecs intercat with each oter 
+dash line: represt return message, solid- request 
+if pin valid: choices
+Activation Box, Messages, Actor(outside system), lifelines
+
+
+caching js files:
+$ajax, cache :true, datattype:"script" , url: .js
+CustomJsonDataHandler.cs: IHttpHandler
+ Processrequest()
+conetxt,Response.Cahce: Expiry, SerailizedData	
+
+
+Redis: Inmemory data structure supoorting abstract Ds like likned listm, map, set 
+etc
+
+
+Jira like Redmine:
+Bug/Story/Epiq /board/sprint/baclog
+title, description, assignee, author, estimated duration, Subtask, paremt task, Proirty, Watcher, Status,  Service
+
+Create Project , add  baclog items , add sprint of say 2 weeks, add items in sprint ,cerate bpard for 3 status : to be done , in prgerss, done 

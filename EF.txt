@@ -1,0 +1,21 @@
+	EF:
+	ORM frmweok
+	creates classe based on tables and viverversa- create ssql queries to create db tabels absed on classes
+	Navugation Properteis
+	https://www.entityframeworktutorial.net/
+	==============================
+
+	csdl,ssdl,msl	
+	timestamp is a synonym for rowversion - it's automatically generated and guaranteed1 to be unique. 
+
+	tt/t4 - tempalet based code generatyion enegien
+	Modle browser 
+	Tabke mapping
+
+	fucntions od DbOCntext class:
+	querying
+	chnag etrcking
+	context has savchanges() and adtabase , changetracker propetries
+	dbset has add(), find(),remocve()
+	in connected entities, ciontext watch over entities change,, so no nned to set EntitySrtate
+	in diconncted, need to set Entry(newStudent).EntityState="Added" manulaly

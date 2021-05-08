@@ -1,0 +1,254 @@
+VUE - Evan You
+
+	Progressive lightweigh,reactive,  JS framework for UI
+	Virtual DOM - Part of exactly Page is refresh  what needed instead of whole DOM
+	VUE CLI
+		
+	directives :
+
+	<div id ="main"<{{message}}</div> or
+	<div id ="main" v-bind:value="message"></div>
+	<div id ="main" v-bind:style="color:red"></div>
+	<div id ="main" v-bind:class="testClass"></div>
+	<div id ="main" v-if="isTrue"></div>
+	<div id ="main" v-else></div>
+	v-show
+	v-else-if
+	<inpput v-model="message"> {{message}}
+	<ul><li v-for="hobby in hobbies">{{hobby}}</li></ul>
+	<ibnput type="checkboc" v-model="isSelevted">
+	v-model.number="qty" // for numeric
+	{{showFuulName()}} 
+	{{showFuulName()}}
+	{{showFuulName()}}
+	{{showFuulName()}}
+	//called for n times, use computed property instaed which will compute stuffs only when change occurs ,they wacth for changes and run from chache
+	methods : takes args, computed dont
+
+		{{ fullName}}
+		
+
+	<button @click ="qty +=1">
+	v-on:click="reverseMessage"
+	Single file vue compionets - css + htnl +js
+	var app = new Vue({
+		el :"#main",
+		data:{
+			message:"hello vue",
+			isTrue :true, //key-value pair
+			hobbies: ["A","B",],
+			isSelevted: "",
+			fn : "", //binded to v-model for input
+			ln:"",
+		},
+		methods:{ 
+			reverseMessage : function(){ //key-value pair
+				 this.message = this.message.split('').reverse().join('')
+			},
+			showFuulName : fucntion(){
+			return 	this.fn + " " + this.ln;
+				
+		},
+		computed:{
+			fullName : fucntion(){
+				 return this.fn + " " + this.ln;
+			} 
+		}
+	});
+	<link ref="styleSheet" href="file path">
+	for multiple checboxes , isSelevted will be an array
+	templates:
+	in js:
+	Vue.copmonent("my-first-com", {
+		template: "<div></div>", //only 1 root element 
+		
+	});
+	use component like <my-first-com></<my-first-com>
+	Component : to render certain block, to do some spefic stuffs and resued
+	Vue - content state management - Provider and Injector(Consumer)
+	https://medium.com/@alirezavalizade/react-context-in-vue-d40ee145974d
+
+	npm intsall -g @vue/cli
+	vue create myproj
+
+	App.Vue - base componenet
+	<template></template>
+
+	export default({
+		name :"App",
+		components:{},
+		data:()= >{
+				return {
+					isSelected:true,
+				}
+			},
+		filters :{
+			appendname:fucntion(value, extraparam){ // use it like {{Firname | appendname(extraparam)}}
+				return value + "test";
+			},
+		},
+		props:{
+			bookname: { //instead of bookname porp, u can use book object as prop too 
+				type:String,
+				valiadtor:value =>{
+					//note:this is undefined here ;The props are validated before the component instance is created, hence the instance properties such as data, computed, etc will not be available to use inside default or validator function
+					if(value.length <2) return fasle;
+					return true;
+				}	
+			},
+			
+			book: { 
+				type:Object
+			}
+	});
+
+	use props in Child:
+	<img src="imglink">{{book.bookname}} //if book is prop
+	or 
+	<img src="imglink">{{bookname}} // if bookname is porp
+
+	sending prop data from Paremt:
+	<li v-for="book in books":key="book.id":bookname="book.name":book="book">
+
+	<style scoped></style>
+	Prefer Vuex instead of this.$root or global event bus
+	Fucntional COmponents- no script tag(stateless). only accespt props in order to dispaly data
+	<template fucntional>
+	<h1> {{props.title}}
+	..
+	</template> 
+
+	Rnder fucntion - to use javascript
+
+	Custome Events : Child t o paremt passig data 
+	<button @click="$emit('fn_name', bookname, img)"> in child 
+	<Book v-on:fn_name="createNewBook"> //fn_name is custom method being emiited by child
+
+	Watch hooks:
+	beforeCreated.,
+	Created,
+	beforeMount,
+	mounted:
+	beforeupdate,
+	updated,
+	beforeDestroy, destroyed
+
+	watch:{ // can only wacth data or property 
+	 bookname:fucntion( newVal, old){
+	 }
+	}
+
+	Slots:
+	say if u want some redering content from parent to child like:
+	in Book : <newBook> Hello from oarent</newBook>
+	in  newBook: <slot></solt>
+
+	slots will replace the content passedd from paret into the child dom
+	but if u have text inside slot in child, it will override
+
+	named slots:
+	supoose u want to use bothe slots, parent and child
+	in paremt :
+	<template v-slot="header">Hedaer<..>
+
+	in child
+	<slot name="header">
+
+
+	MIXINS:
+	supoose we have 2 components : Employye and csutomer, which have many common fiekls like name, phone, emails etc, and we need validation for each field for both types\
+	we can have common mixin in this case (easily mixes with components)
+	say EmailChecker.js is mixinf file having method checkEmail()
+
+	use it aniother componenet like 
+	mixins:[EmailChecker]
+	<input id="email" @click="checkEmail()">
+
+	Custom Direcrtives: help apply formatting in components 
+	Vue.directive("highlight", 
+	fucntion(el, binding){ // u can have this fucntion in diff js also
+		el.style.fontSize = binding.value
+	});
+	<span v-highlight="'40px'">
+
+
+	FILTERS: pre/post lgoc, check above
+	ROUTING:
+
+	import VueRouter from 'vue-router'
+	Vue.use(VueRouter)
+	A route has path, name, component
+	Create a VueRouter objecrt having BASE, routes, mode:history and export it
+	use this Router in main.js
+	<router-view> is the componenet exposed by VueRouter
+	<router-link to="/new"> for links
+
+
+	STORE N VUEX:
+	Store is just a js file - 
+	export default Store = {
+		state:{
+			books:[],
+		}
+		addBokk: fucn(book){
+			this.stae.books.push
+		}
+	});
+
+	use it in another comp like:
+	import {Store} from ''
+	data:{
+		books:Store.state.books
+	}
+	Store.addBokk(book); 
+
+	vuex:
+	import vuex from 'vuex'
+	Vue.use(Vuex) //let vue knows we are using vuex
+	export default Vuex.Store({
+		state:{
+			books: []
+		},
+		mutations:{ // synchr in nature
+			addBook: fucntion(state, payload){
+				this.state.books.push(payload);
+		},
+		actions:{
+			saveBook :fucntion(context, payliad){
+				context.commit("addBook",payliad);
+		},
+		getters: {
+			getbooks : fucntion(state){
+				return state.books;
+			}
+		}
+		
+	});
+		
+	in vuex, we dobnt change the state directl;y , instead use mutations
+	consume getter method in computed property 
+
+	computed:{
+		books:function {
+		 return this.$store.getters.getbooks;
+		}
+			
+	}
+	addbook:fucn(){
+		this.$store.commit("addBook", params) // to use any mutation method use commit 
+		this.$store.dispatch("addBook", params) // to use any actions method use dispatrch 
+	}
+
+	in main.js:
+	new Vue({
+		router, 
+		store,
+		render:h=>h(App)
+	})'
+
+
+	MoDULES: tp separate local store with global store
+
+
+	
+ 

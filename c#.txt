@@ -1,0 +1,385 @@
+Try catch vS using - IDisposable
+	throw vs thoex ex:  throw maintains entire stack trace and throw ex resets the stack trace 
+	Task asynchronous programming model (TAP) - ayn n await - non blocing 
+	
+		static async Task Main(string[] args)
+		{
+			Coffee cup = PourCoffee();
+			Console.WriteLine("coffee is ready");
+
+			Egg eggs = await FryEggsAsync(2);
+			Console.WriteLine("eggs are ready")
+		}
+
+oops - 
+	Nullable Types ,Null Coalesce operator ??
+	Datatypes conversion: Implict conversion: no loss of data and no overflow
+	Explicit : () - type cast op OR COnvert Class(ArgumentNull Exc, ArgOutOfRange Exc) of ..net
+	diff bw two: 
+	int i =(int)238739772333.73897F ; // wont throw ex, will give INT.MIN_VLAUE
+	Convert will throw excepton
+
+	int i = int.Parse(str) // string to int : format exception if arg: str has  invalid format
+	int.TryParse(str, out res)
+	Arrays are strongly typed
+
+	Instance v static members:
+	Mark a nochanging member as static , which is not object dependednt(cant use this keyword for it rather obj: ClassName.PI) ; rather is craeted for a class
+	eg PI 
+	Static member has only 1 copy for n  objects 
+	If a member doesnt have access modifier, its private to the calss like constructor etc 
+	a static  constructor init static fields, its valled bfeore any other ocnstructors or even before refrencing sttaic fields
+	----------
+	Inheritance:
+	Abstrat away common logic or code into a common class, DRY, tetsig easy 
+	Derived classes are specialiaztion of base class
+	base class are instatitaed(even defauklt constructor of base called first) bfeore the child class	
+	derived class can call uploaded version of parent constrcutor using :base
+	Constructor : called when u create an object of a  class, has no return type and is same name as cklass/struct, gen for initialztion purpose
+	==========
+	Method hiding :
+	same method in child class can hide parenmt same method(warning to use new keywrd with such child method)
+	u can still call paremt methpod using :
+	1. base.print() inside child  method
+	2.typecast to parent class (Base)b
+	3 use a parent class refernce  var to point child class objec
+	bae b = new Child()
+
+	Polymorphism: enables using ovveriden	  derived class nethod using base class refernce at run time
+	when we use above pt 3: it will call base  methid, but if u dont want ti=o use base and use child's  methods inetad, maerk base method as virtual and u may/ may not override the virtual mnehod
+	bae b = new Child()
+	At run time it checks what kind of object we have and call resp overriden methdod	
+
+	Overriding vs over hiding:
+	bae b = new Child()
+	In overriding child method is invoked using abve statements
+	In overhiding, base class method will be calleld
+
+	Overlaodig: no. or type of paremeeters or kind of params(out , ref , value)
+
+	Why porperteis:
+	Restrictions to private fields like :
+	name cant be null, 
+	id > 0
+	mark sd be readonly  or wite olly 
+	Fields dont have control over what gets assigned to them or whats read out of them 	
+	We protect feidls using props(enacpsulate fields by marking private)
+	Auto Implemented props - insread of gettter n setter methods	
+	=====
+	Structs:
+	eg int: also a struct , int is alias for System.Int32 struct 
+	Simialr to class, it can aso have private fields, props, methods, constructor and can be instatiated
+	Diff : 
+	a struct is value type, calss is refrence type 
+
+	stack vs heap :
+		int i ;
+		Customer c = new Customer();
+	In stack : i and c(ref var or ptr)
+	in Heap: obejct of cutsomer	
+	1. Value types( i , or ref var :c) are immediately killed after scop completion ,
+	But heap variables( obj od Customer) are coollected by GC 	
+	2. wehn u copy a struct to another struct  : new copy of struct is created, any modification to new wont affect old 
+	-------------
+	Interface:
+	 - only decalrations, no implementation
+	 - members of interface are public by default , so u cnat specify acces modifir
+	 - cant have fields	
+	 - can be implmented by calss, which HAS to provide implementation
+	 - class can have multiple interface inheritanec
+	 - cant create instance of interfacs as , the methods are not implmented inside a interface, so it makes sense 
+	 
+	Explicit interfaces implementation:
+	say 2 interfaces have a method with same name and class inherits both , ambiguity 
+	- no access specifier
+	- using explicit interface name and dot :   void I2.Method(){}
+	- for explicit interface implmenetation, only way to eveoke method is using interface Inetrface ref var, cant be evoked by class ref variable :
+	(I2)childObj.ambigousMethod()
+
+	Abstract class: incomplete class
+	- abstract method inside abstract calss cant have method definition. child class hs to provide implt to it (override mthod)
+	- can be used only as base class
+	- cant be sealed
+	SEAL class:
+	cant be used as base class
+	-since they are incomplete class, we cant create an object with it , cant be instatatntied
+	- if inheriting class doesnt wish to provide impltn, it has to be declared abstract 
+	Abstract class/Interface Reference variable cant point to derived class objct
+
+	-------------
+	Abstract class vs Interfaces:
+	abstract class -can have acces modifier, interface dont (public by def)	
+	 abstract class -can  have fields, interface cant 
+	abstract class - can have impln for some members , interface cant have
+	class can have multiple interface inheritance, not multiple class
+
+	Problem of Multiple class inheritamce:
+	Diamond problem - say 2 class ahve same method and 3rd calss inherits both class, A and B 
+	C:A, B - ambigiuty to evoke which class method
+	with interfaces its fine, as they dont have implmentation 
+
+	Boxing and Unboxing
+	-----
+	https://www.tutorialsteacher.com/articles/difference-between-delegate-and-event-csharp
+	Delegates
+	  - type safe function pointer 
+	  - synatx is same as  fucntion signation with delegate keyword
+	 public delagete void testDel(string s);
+		- delgate point to fucntion, fir this we need instance of dekleaget, herer it behaves like a Class
+		in the constructor of del, u pass the fucntion it points to 
+		testDel d = new testDel(printHello); // this fucn sd have same signature as delegate 
+		d("hello");
+		
+		
+		-can use delagate to  implement logic for a method which elsewise would have a single logic;			 using delegate as parameter to that function 
+		- use to declouple logic from class
+		- can use lambda expression instead of creating instance of delagate and the pointer function like:
+		Employee e = new Employee(abc, delegate) is replaced by:
+		Employee e = new Employee(abc, e=>e.Salary > 3000)
+		
+	MultiCast delegates-  
+	used in observer beahvioral pattern
+	deelegate	 referincing to more than  1 fucntion
+	in order in delaget invokation list 
+	del4  =  del1+ del2+ del3; 
+	del4(); 
+	//multicast del  - 
+	//+ - operator for	delegatechaining
+
+	del += method1;
+	del += method2;
+	---
+	Exception handling:
+	props of Exception class:
+	Message, Stacktrace, source, TargertSite 
+	InnerException : ALLOWS TO TRACK THE ORIGINAL EXCEPTION
+	ex.GetType
+	supoose a/b ; b = 0 gives exception, 
+	logging this to a file which is npt present with nested exception(passing innerexception object as apram to outer ex) will give Exception:FileNotFound
+	and InnerException: DividebyZero	
+	--------
+	Custom Exception:
+	eg:
+	class UserAlreadyLoggedInException: Exception{
+	 public UserAlreadyLoggedInException(string msg) :base(msg){ // use overload version of parent consstructor
+	 }
+	}
+
+	-------------
+	Appln domains n Remoting Srevuecs:
+	if say we have 2 applns a and b and both need to talk to each other , they the object needs to be serialezed to cross the boundary of 1 appln to reach another 
+		
+	-----------------
+	base.ID // base refers to base/parent object 
+	Struct cant have default constructor 
+		int i = new int() will initialize the Integer struct and is a valid statemet
+		int j ; 
+		print(j) // will give cte, it sturuct type either needs to be initialized or assigned before used
+	Base class contructor is invoked prior to Child Class Constructor
+
+	contructor 	+ base:
+	contructor 	+ this:
+	Static Constructor - 
+	IMPO
+	https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-constructors
+	--------------------
+
+	String Interpolation using ${} n tilt
+	Override toString
+	private constructor - private ClassName{} - ant instatiate this class - used if class has static members only 
+
+
+	====
+	//to register a nmtehod to a delagate using same instance use  : +=
+	del += pointerfucntion
+	all fucntions are added to Invokation List in order
+	for a non void function, delagate will hold value of last function in invocations list
+	multicast del are useful for observer design pattern
+
+	StreamReader  sr = new StreamReader(filepath);   
+		Console.WriteLine(sr.ReadtoEnd());
+
+	StreamWriter sw = new  StreamWriter(filepath);
+	sw.write(exception.getType().Name) 
+	InnerException 
+	CustomException
+	Attributes like [Obsolete(message, isError)], [Webmethod] 
+
+	Types (class, struct, interface, enums, delegate, by def - internal) and  type member(fields, props, constructor, methods)
+	- access modifiers(by def- private)
+	types only 2	 - internal and public , menbers - 5 acces specifers
+	INTERNAL - ACCESIBLE TO ASSEMBLY (CLASS LIBRARY)	
+	to access another assembly class in our class, need to add refernce to that assembly AND ue Using Directive 
+
+	ENums
+	---
+	aTTRIBUTES- DECALARTAIVE INFO TO UR PROGRAM 
+	Reflection - ability to inspect assembly's metadata at run time
+	Type t = Type.getType("namespace.classname"); or
+	Tyep t = typeof(classname); or
+	Type t = obj.GetType();
+	t.GetProperties/ GetMethods /getConstructors()
+	1. used for drag drop control + properties
+	2. used for late binding - Activator and  Assembly class
+	-----------
+
+	Generics:
+	design classs and method decoupled from data types
+	we can use onject as generic type but it will degradfe perf due to boxing and unboxing and it violates strongly typed nature
+	]
+	public bool AreEqual<T>(T a, T b){
+	 return a.Equals(b)
+	}
+	
+	
+
+	ob.AreEqual<int>(1,2);
+	Syste,.Object class have 4 methods : GetType, Equals, ToString, GetHashCode avaiable for all types
+	Convert.ToString (converts null to "") vs toString()(throws NullRef Exc)
+	String(immutavke) vs StringBuilder(mutable , bettrer perf)
+	for freq changing string, if String is used, each time, a new object is created , and there are many orphaned objects(not refrenced by any variable from stack) ion heap until GC cleans
+
+	Partial classes:
+	split a class into 2 or more files, all parst are combined when code is comipled
+	advs: ascx.cs(dev codE)and ascx.designeer.cs (autogenerated cide like Textbox ciontrols are here)
+
+	Indexers: reader[0] or reader["name"]
+	use this keyword to reate a indexer:
+	public string this[int employeeId] {
+	get{};	
+	set{};}
+
+	System.Coolections.Generic namespace:
+
+	Dcitionary : key value pari
+	Dictionart<int, Customer> d = ..;
+	d.Add(1, new C);
+	read by : d[Id]
+	foreac(){d.key, d.value} , d.Containskey(2332), d.Count() , d.Remove() , claer()
+	Array c =conver arra to disctionary : c.toDictionary(c=>c.Id, c=>c)	
+
+	List:
+	Unlike array, list can grow in suize
+	List<Customer> c;s
+	c.Add, c.Insert(0, new customer), c.IndexOf(item), contains, exists(condition),find(condion) - return first matching item, 	finLast, findAll, AddRange , AsReadOnly, TrueForall(condn)
+	Sort(	), reverse()	- for simple types who implements ICompareable interfaceand has CompaerTo ()
+	Sorting list of compplex ypes:
+	1. Adda CompareTo methdo for the type based on ur logic, say sort by slaary 
+	2 Using delegate Comaprsion<Customer> pointing to a fn 
+		
+	when dictionary over list?	
+	if u want to lookup a value using key , disctionary is better, for lookups
+
+	Queue:
+	.Enqueue(), .COunt, .peek(doesnt remobve the item)
+
+	Stack - push, pop , peek
+		
+	MultiThreading:
+	1. Pr ocess - Process is what the operating system uses to facilitate the execution of a program by providing the resources required. Each process has a unique process Id associated with it. You can view the process within which a program is being executed using windows task manager.
+
+	2. Thread - Thread is a light weight process. A process has at least one thread which is commonly called as main thread which actually executes the application code. A single process can have multiple threads.
+	
+	Thread wrokerThread = new Thread(doTImeConsumingTask)
+	wrokerThread.Start() // use aanother thread frees up main thread for other tasks
+
+	adv:
+	1. responsive UI 
+	2. Effienct use of Multiprocessor 
+
+	dis:
+	1. Context switch  - overhead for single processro 	
+
+	async and await - non blocking UI 
+yield + return
+yield : custom stateful iteration
+control moves from caller to source to n fro, back n forth
+
+like say we have a listoo fint and  u added 1 to  in it, now u want to filter only n > 3 , u added a filter() where a temp list is used, to do the logic, instead of this temp, we can ield return element, and it returns to caller(Main) and come back to Filter() with stateful elment(5)
+another eg is print all running total from 1 to n
+
+IEnumerable and IEnumerator.
+1. IEnumerable uses  IEnumerator internally, its a sugar code on IEnumerator
+List<int> a;
+IEnumerable<int> b=(IEnumerable<int>) a;
+foreach ..
+
+IEnumerator<int> c= a.GetEnumertors() 
+ Movenext(), .current in while
+
+2. IEnumerable doesnt remember states
+list : 1 to 100
+print 1 to 50 in 1 methodd 
+pass 51 hence to print form another method,
+
+works with enymerator , not with enumerable 
+
+out vs ref: by reference
+ref - 2 way 
+out - 1 way
+
+https://www.c-sharpcorner.com/blogs/delegates-and-eventhandler-for-events-in-c-sharp
+
+Logger - publisher - emit/raises events 
+Mail/message Serviece - subscribers handle events
+
+
+event is warpper ard degate or event is encasupated delegate
+syntax:
+event delegate_name event_name;
+
+public delegate void Notify();  // delegate
+                    
+public class ProcessBusinessLogic
+{
+    public event Notify ProcessCompleted; // event
+
+}
+
+
+sealed class + extension class
+sealed class A{
+}
+Class static B{
+ public  static void Extendedmethod(this A obj, strings args){
+ }	
+ 
+ .............................................................
+
+Delegates and Events:
+1 Define a delegate 
+2 Define an event based on delegate
+3 raise the event
+
+class VideoENcoder{
+
+public delegate void VideoEncodedEventHandler(object source, Eventargs args); //1
+public event VideoEncodedEventHandler VdeioEncoded;    //2 
+public void Encode(Video video){
+...
+OnVideoEncoded();
+}
+
+protected virtual void OnVideoEncoded(){
+if(VdeioEncoded ! null){
+		VdeioEncoded(this, EventArgs.EMpty)  //3
+}
+}
+
+//
+class MailServicee{
+	public  void OnVideoEncoded(object source, Eventargs args){
+		...
+	}
+}
+
+//Main Programs
+Main(){
+var vdieoEncoder new VideoENcoder(); //publisher
+var mailSrvice new MailServicee() // Subsricber
+vdieoEncoder.VdeioEncoded += mailSrvice.VideoEnocded;
+vdieoEncoder.Encode(video);
+
+const vs readdonly / Compile vs runtime vars ; const - 1m = 100 cm, readonly PI 3.14 pr 3.1411 etc
+
+n args method c# - params KEYWORD

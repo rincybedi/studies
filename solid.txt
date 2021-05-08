@@ -1,0 +1,48 @@
+	
+	SOLID
+	S- A emtity should have only reason to change Ussr- login , register, sendmail, loferror
+	O- Enitity sd be open for extension but closed for modification remove EmplouyeeType for bonus, use abstract clsss  and abstract methods
+	L- Base class ref can be replaced with Derived class - GetminSal in IEmp, getBonus in IEmpBonus fopr 2 types permanent, Temp, Contract, in mainprogram, add all 3 subtypes to IEmp	in array or list	
+	I - Many client specific interfaces are better than 1 general interface, keep interfaces as small as possible, instead f a big fat interface (see  S)
+	D -depend upon interface rather than concrete clases, Higl level modules sd not depend on low level modules	, both sd depend on anstractions
+    
+===========================================
+SOLID:
+
+Srp & ISP: 
+interface IReport{
+getReportDetails(); 
+generateReport();  // put it into IReportGenerator
+SaveReportToProjectHistory(); // put to IReportHistory
+}
+
+OCP:
+-----------------
+
+interface Ireport{
+ virtual void generate();
+}
+
+class DocReport : IReprt{
+void override generate(){
+....
+}}
+
+class PdfReport : IReprt{
+void override generate(){
+...
+}}
+
+
+main(){
+IReport docreport = new DocReport();
+docreport.generate();
+IReport pdfRpt = new PdfReport()
+pdfRpt.generate();
+
+}
+
+.............
+LSP:
+           
+

@@ -1,0 +1,19 @@
+	System Design IG
+	----------
+	App Servers(Microsrevices)
+	Cache
+	Inmemory storage DS - Redis
+	Metadata DB - Data Models
+	Client
+	Distributed System for Images - Object Storage(S3)
+	Load Balancer
+
+	===========
+
+.........
+SOA vs Microservices:
+In Soa, each service  talk to each other in a network,  a service can be shared among various servievs, they follow max share policy
+In MS, each service is independent and loosely coupled, they follow min share policy, better for Devops and CD, provides better scalability than SOA, each service can have their own dedicated DB unlike Soa	.
+In Soa, we have service consumer and providers an dthey talk via ESb ie  Enterprise Service Bus
+In SOA, ESB could become a single point of failure which impacts the entire application. Since every service is communicating through ESB, if one of the services slow down, could cause the ESB to be clogged up with requests for that service. On the other hand, microservices are much better in fault tolerance. For example, if there is a memory leak in one microservice then only that microservice will be affected. The other microservices will continue to handle requests.
+
