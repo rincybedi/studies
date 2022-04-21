@@ -10,3 +10,7 @@ if we need eager loading, we canuse data load options:
 
  or use projection like :
  var res = dbContext.Dept.Select(d=> new{DeptName= ...,EMployees=...})
+
+Ado.net vs EF performance
+IEnumerable vs IQueryAble
+Pagination using EF

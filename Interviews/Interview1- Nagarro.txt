@@ -1,0 +1,27 @@
+I made a project from scratch using Create React App for React, 
+used Mongodb at db, express js at server side for handling route requests and accessing database.
+
+JWT authenication:
+jwt.sign takes payload which want to serialize and a scret key
+It gives an acces token which we retun to the client, this access token has user info safely signed into it
+Content type and Accept
+Authorization: Bearer TOKEN in auth header
+
+
+Middleware is a fn that takes req, res, and next params eg authenticateToken
+jwt.verify(token, key, callback)
+if user is successfully verfieid, user info is extracted and store in req.user and used in all requests where middleware is used
+next()
+
+jwt works wells with several servers
+
+if somebody got access token, he wud have infinte access, so we need to have a refersh token and expirty date. 
+after access token expires, need to generate access token using refresh token.
+
+
+created many screens using fuctional componets, hooks like useEFfect, useState,
+Context Api to maintain user state in 1 global store, with serveral dispatch actions.
+
+
+
+

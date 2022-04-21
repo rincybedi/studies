@@ -119,6 +119,12 @@ oops -
 	with interfaces its fine, as they dont have implmentation 
 
 	Boxing and Unboxing
+
+	public object GetInstance(string strNamesapace)
+		{         
+			Type t = Type.GetType(strNamesapace); 
+			return  Activator.CreateInstance(t);         
+		}
 	-----
 	https://www.tutorialsteacher.com/articles/difference-between-delegate-and-event-csharp
 	Delegates
@@ -186,7 +192,7 @@ oops -
 
 	String Interpolation using ${} n tilt
 	Override toString
-	private constructor - private ClassName{} - ant instatiate this class - used if class has static members only 
+	private constructor - private ClassName{} - cant instatiate this class - used if class has static members only 
 
 
 	====
@@ -383,3 +389,16 @@ vdieoEncoder.Encode(video);
 const vs readdonly / Compile vs runtime vars ; const - 1m = 100 cm, readonly PI 3.14 pr 3.1411 etc
 
 n args method c# - params KEYWORD
+
+async n await
+when we have await markup it tells the thread to return to its caller method as the async operation may take some time and so not lets block the thread.
+ await SaveAsync();
+ nextMethod()
+await doesnt mean wait until the method is completed, instead it(the thread) returns immediately when it encouunter the keyword.
+
+At runtime, there is a partition created for these kind of methods , one for SaveAsync, other for nextMethod hwich executes after SaveAsync is done
+
+When the async method is complete , the compiler is known to return a thread to execute nextMethod() by await markup.
+https://docs.microsoft.com/en-us/archive/msdn-magazine/2014/october/async-proramming-introduction-to-async-await-on-asp-net
+
+we can use async for accessing files, accessing database, web services and other blocking operations and we can improve the resposiveness of application

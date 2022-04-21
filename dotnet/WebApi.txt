@@ -149,3 +149,20 @@ we can replace defaaultSelect controller with our custom select controller
 
 
 Content Negotiation
+Web api request validation: https://www.c-sharpcorner.com/article/learn-about-web-api-validation/
+use Data Annotations for properties
+use IvalidatableObject and define custom rules for Class Level Validation and use ModelState.IsValid
+
+
+Custom filter for validation:
+To avoid having to check for model state in every Put/Post action method of every controller, we can generalize it by creating a custom action filter.
+public class ValidateModelStateFilter: ActionFilterAttribute {    
+    public override void OnActionExecuting(HttpActionContext actionContext) {    
+        if (!actionContext.ModelState.IsValid) {    
+            actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, actionContext.ModelState);    
+        }    
+    }    
+} 
+ config.Filters.Add(new ValidateModelStateFilter()); in WebApiCOnfig
+ ...........
+ AuthorizationFilterAttribute(authcontext, onauthorization)  , ActionFilterAttribute(actioncontext, OnActionExecuting)

@@ -1,0 +1,19 @@
+Accenture : selected
+Deloitte : selected
+Annalect : selected
+QualMinds :Pending
+PWC: Pending
+Capgemini: Pending
+mirabeltechnologies : selected
+--------------
+Rejected:
+Seimens
+Pune frontend 
+DonateKart
+Euromonitor
+-------------------------------
+Infosys: DOne
+Nagarro: DOne
+CGI : DOne
+Centric : done
+Epicor: done

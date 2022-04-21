@@ -44,5 +44,8 @@ pdfRpt.generate();
 
 .............
 LSP:
-           
+...........
+DI: We use interface in ctor and its method in client function, this way client code never changes, even if the implementor of that method changes.
+
+PaymentProcessor : CardPayment / UPIPayment
 

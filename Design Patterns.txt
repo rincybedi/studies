@@ -56,6 +56,34 @@ create object copying  prototype of actual object
 subclass of interface use super.clone to create object 
 CloneFactory has factory method which takes the interface object  and call the common method (without know the type of subclass)
 	 
-	
+https://www.quora.com/Which-C-design-patterns-you-have-used	
+
+To read:
+COmposite Design pattern  for hierar structure:
+Startegy Design pattern for class behavior which can be changed at run time based on COntext
+Mediator design pattern for chat room and user support 
+Template design pattern for method attributes or FILTERS
+Dependency injection
+
+
+sealed class Singleton{
+	private static readonly obj = new object()
+	private static Singleton instance = null;
+	public static GetInstance{
+		 get {	
+			 if(instance == null){ //double check locking
+				 lock(obj){
+					if(instance == null) return new Singleton(); 
+					return instance;
+				 }
+			 }
+		}
+	}
+	private Singleton(){}
+}
+
+main(){
+	Singleton obj = Singleton.GetInstance;
+}
 	
 	

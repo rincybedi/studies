@@ -1,3 +1,4 @@
+react reconciliation and diffing algorithm using bfs
 ....................
  Angualr is mvc based framwork, react is a js librrary 
  angaulr uses typescript , react uses jsx 

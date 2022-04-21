@@ -1,0 +1,41 @@
+Requestheader:
+{
+ X-Platform: "xyz"
+}
+axios.post("url",
+{
+//custom header
+"Authorization" :Bearer kslklks,
+"Accept":"Application/json",
+"ContentType":"application/xml"
+})
+===
+method1()
+...async await
+
+pageNo, pageCount,sortColumn, sortOrder
+2, 10
+var employees = context.Employees.Skip(pageNo - 1 * pageCount).Take(pageCount).OrderBy(x=>x[sortColumn])
+
+select fetch [pageCount]  offset [pageNo - 1 * pageCount] rows
+from employees
+order by
+=======
+method(a,b='',c='')
+==============
+
+
+
+method(a, , c)
+---message queues
+------ci/cd
+-----complex queries
+---------filters in angualr
+real use f interface and abstract class
+interceptors in react
+https://medium.com/swlh/handling-access-and-refresh-tokens-using-axios-interceptors-3970b601a5da
+
+aws, message queues, gcp, devops, dot net core, react, microservices, Dapper
+
+https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/
+https://www.c-sharpcorner.com/article/use-of-interface-with-real-time-examples-interview-questions-and-answers-about/

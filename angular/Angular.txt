@@ -82,8 +82,7 @@ before angular 2 - angular js
 
 	Directives - instructiosn to DOM
 	@Directive({
-		selectore:[myDir] // liek attribure
-		
+		selectore:[myDir] // liek attribure	
 	}})
 
 	<p myDir>
@@ -96,7 +95,7 @@ before angular 2 - angular js
 
 	Attribute directive [ngStyle]="{bgCOlor:getColor()}" ngClass] ="classname: 1==1"
 	sourecmap for debufging from main.bundle.js
-	Augury
+	Augury`
 
 	Binding to custom properties:
 	//all propetries aof compnent are inaccesible outsdue
@@ -200,7 +199,7 @@ before angular 2 - angular js
 	}	
 
 	==================================
-	COnatiner and Ne sted Components: (parebt and hild)
+	COnatiner and Nested Components: (parebt and hild)
 	both @imput and @putput on chidl
 	Parent to child - 
 	//child

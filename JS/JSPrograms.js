@@ -68,3 +68,9 @@ function sumpair(a, n) {
     }
   }
 }
+
+
+// difefrence in arrays
+// var a = [1,2,3,4];
+// var b = [2,4]
+// var c = a.filter(x=>b.find(y => y ===x) === undefined) //[1, 3]

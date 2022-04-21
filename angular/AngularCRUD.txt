@@ -18,7 +18,7 @@
 	appl of base href
 
 	Forms:
-	NgFor m from 'angualar/forms'
+	NgForm from 'angualar/forms'
 	value-valid-touched-dirty using template refernce var( for ngForm)
 
 	either have selected (or checked) for input control or have ngModel; though both are totally diff i mean, dont use both together
@@ -51,7 +51,7 @@
 	Direcrtives:
 	gen used for custom validators
 	Angular password and confirm password validation
-	[div ngModelGroup="passwordGroup" // for red border in both imputs
+	[div  ="passwordGroup" // for red border in both imputs
 	Angular trigger validation manually -updateValueAndValidity()
 
 	FOR select option dropwon like 'select..' (value -1) and add validn if label selected:
@@ -107,3 +107,4 @@
 	use viewchild for keeping/accessing  reg varaible in ts file
 
 	=======================
+	

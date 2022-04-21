@@ -1,3 +1,16 @@
+
+sql vs nosql: 
+sql based on structured data, table schema is fixed andlike columns are known before data entries, though we can modify it here
+no sql, attributes are added on the fly, not necessary for row t have each column 
+no sql - performance and scalable, horixonaly scalable
+sql  vertically scalable and is acid compliance 
+
+eg document:mongodb and couchdb 
+key value: redis
+columnL cassandra
+graph : neo4
+
+
 Indexes
 Views
 Triggers

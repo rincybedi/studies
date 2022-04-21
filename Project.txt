@@ -178,7 +178,7 @@ We have ConversationType for Project / Sa and order.A Sp is made to read top n o
 	report.Render("PDF", theDeviceSettings); 
 	
 	 XDocument xmlDoc = XDocument.Load(tempRdlFilePath);
-	 XElement.Remove()
+	 XElement.Remove() 
 	 For every checked section, we will have bool prop IsVisible, retrive this for every prop to remove XmlElmenet and save the doc back to disk as u process fuirther 
 	 
 	 using itextSharp, merge pdfs in a Document obj

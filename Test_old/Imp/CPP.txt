@@ -1,0 +1,21 @@
+getline(cin, s); // is a function of "string" library.
+--------------------------------------
+Using getline to break words of input string - 
+	string S,T;
+	getline(cin, S);
+	stringstream X(S);
+	while (getline(X, T, ' ')) {
+		cout << T << endl;
+	}
+--------------------------
+Convert string to vector<char> :
+	string s;
+	cin >> s;
+	vector<char> inputV(s.begin(), s.end());
+-----------------------------
+https://www.geeksforgeeks.org/converting-strings-numbers-cc/
+tring str= to_string(i);
+-------------------------------------
+https://prismoskills.appspot.com/lessons/Bitwise_Operators/Check_power_of_2.jsp
+
+https://codeforwin.org/2016/01/c-program-to-count-number-of-ones-and-zeros-in-binary-number.html

@@ -117,3 +117,39 @@ Mapping virtual path to physical path using Server.MapPath
 	delegate void EventHandler(object sender, EventArgs e) //args and type (signature)of delagate matches of fucntionEventHandler
 	void fucntionEventHandler(object sender, EventArgs e) // eg of fucntionEventHandler = Button1Click
 
+Authorization:
+to check if the user requesting resource from a server is the same use thats logged in during authentication process.
+
+Normally done using Sessions
+After authentication, user info is stored in server memory an sessionId is sent to browser
+Session Id is stored in cookies of browser and is send with each request and is validated by server by checking if session id is valid by checking from its erver memory.
+
+Jwt uses a web token instead of cookies.
+So when user is authenticated, server creates a token and encodes and sign it with a secret so it knows if you tamper it, its invalid.
+Nothing is stored in server.JWT has all info about user.Now with each request, jwt is sent. Server signs the received token with its secret key and verifies it the token sinced the time its been last signed
+
+Main diff is : user info is already stored in token itself and nothing is stored in server.
+so we can use the token across multiple servers, as comapred to when i server has session id and others do not
+, hence providing single sign on features
+
+
+header:
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+then, this JSON is Base64Url encoded to form the first part of the JWT.
+Payload{
+	iss (issuer), exp (expiration time), sub (subject: id of the user who is being authenticated), aud (audience), and ot,
+	iat(issued at), exp (expiration time)
+}
+
+Signature:
+	HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+
+  eg Bank and Retirement apps are hosted in multiple server, when redireting to Retirement page, user have to relogin , but that not very user friendly.If we to have user seemless experience, we may use jwt and share secret key in each server, that way user wint have to login again
+
+  
