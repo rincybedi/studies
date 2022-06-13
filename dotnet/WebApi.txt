@@ -1,0 +1,168 @@
+
+	Web API is a framework for building Web API’s, i.e. HTTP based services on top of the .NET Framework. 
+	REST constrainst
+	1. Client Server constraint
+	2. Stateless constraint
+	3. Cacheable constraint
+	4. Uniform Interface
+	Build single service consumable by 2 clients: use wcf in this case, but configuration can be headacge
+	Java client: protocl : http, over message fromat: xml for interoperability
+	.net client: protocl : tcp, over message binary for performance
+
+	ValuesController: ApiCopntroller has 4 mthods get/put/post/del
+
+	Webapiconfig.cs has Register() ; it has different routes configued. like name :"DefaultApi" 
+	in App_start folder
+	We dont have action in url pattern here, instaed :{api/controller/param} maps to get/put / etc verb methods
+	Wehn we issue request for localhost:233/api/values - no param specified, so matches GET method in Values controller and return XML result at ui
+
+	Https terms:
+
+	Request Header = contain additional info abt request
+		Accept(server decide format using Media formatter) : "apllicatio/json" to receive response in json
+		Content-Type to specify the body content type we are sending to request
+	Requesr body
+	responsebody
+	response status code
+
+	Web api and EF
+	Add ado.net entity model 
+	[frombody] attr in case of post or put 
+	Request.CreateResponse()  fot HTTpResposseMessage
+	Request.Uri
+	Custom method names in ASP NET Web API
+	FromBody and FromUri in Web API
+	cors
+	usimg jsonp - wrappin json data in callabck fucntion
+
+
+	WEb Api Idenetity framweork provides severakl tables for idenetity purpose
+	:in App_Datat folder
+	ApNetRoles
+	AspnetClients
+	AspNetUserLogins - 3rd party users- facevook
+	AspNetUser- new registered users
+	we can change the connection string name in Default connection in confuig to change mdf file name
+	we can have this idenetityt db in sql server by pointing to sqk server in config
+
+	Web Api token based authentication-
+	url/token and body - un  , pasword and grnatype
+	-o/p - token in repsone header - access-token token type - bearer with issue and expired date
+	all this is done by web api in startyupauth.cs using some OAuths classes, takes user creds, validatate and geenrate tojken
+	now if we have [Authorize] attr n controllers, we need to pass the token to have rtghe resource
+	Pass token in AUthorization-header
+	Authorization:Bearer 'fegjguk'
+
+	when we login(/token) - we get this token back, we store it in client liek SeesionStoage(setItem()) 
+	get details of authentiocated user:
+	User.Idenetity. name/IsAuthenticated ertc,
+	requestCOntext.principa;.identity also give sthese dertails
+
+customizing basic auth attr: AuthorizefILTERAttribute - override onauthorization(HttpConetxt) method 
+ 
+basic auth : 
+		using headers - Authorization(username : password) eg 
+		Auth : Basic hjkhfkhkl ( hjkhfkhkl is encoded version username: pwd)
+
+		 both are base64 encoded, need to decpde here 
+
+		use this customized attr for whole appln by registering in webapiconifg classor for individual controller or mtehpd
+
+		[EnableCors(***)] - controller attrt
+
+	Token based auth:
+		usig owin and iddenityt framnework 
+		when user registers, its data are stored in a asp.netidednity table in db 
+		u can use default connection string in config to point ot this db in sql server ,if u want the db in ssql server
+		
+		use fiddler : /token, in body username, pwd and grant_type= passwword
+		grnatpe denotes we are supplying pwd and i return we need access token'
+		we get acces token with issue and expirty date , token tpe:Bearer, all is odne by when we create a webapi proj by startAutn class : GrantResourceOwnerCred() - takes uid n pwd and tries to match record, if succesfull, give a tojen
+		store this token u get in sesionstorage or something , will be used for further request zs
+		aUth: Bearer token
+		
+		
+		
+
+	
+	web api google authentication-
+	1 less password to remember
+	gcp setting - generrate Oauth Client Id & client secret by providing site url, redirect url, enable google+ api service
+
+	Provider is ggogle
+
+	  Routing:
+
+	as oppose to convention based routing
+	say we more than 1 Get..() methods in contrller, it get ambiguos
+	[Route("api/stufents/{id}/courses}]
+	for hierarchy of resources
+   [RoutePefix("api/values")] at controller so that u dont have to gove this prefix ofr all controller methods
+
+	Ihhtpactionresult vs HttpResponseMessage:
+	HttpResponseMessage- Request.Createrespone(httpStatusCode.Ok, resul) in web api 1
+	Ihhtpactionres	`ult - in web api 2:
+	1. the code is cleaner 
+	2. Unit testing i better
+	return Ok(result) , NotFOund() or COntent(httpStatusCode.NotFound, message)
+
+	Webapi versioning-using-
+	url /api/v1/students - change in MapRoutre
+
+	quey string ?v=1
+	Accept header - MIME 
+	Accept:appl/json;v=1
+
+	getQueryStringValue(key) : window.location.href n some split 
+
+	Versioning in Web Api:
+1. using uri:
+
+students/v1 should evoke StudentsV1Controler
+students/v2 should evoke StudentsV2Controler
+
+we create 2 routes usuing MapRoute methodchange url pattern to :
+{			
+name:"Version1",
+routeTemplate: "api/students/v1/{id}",
+defaults: new{ id,, controller = "StudentsV1" }
+}
+
+{
+name:"Version2",
+routeTemplate: "api/students/v2/{id}",
+defaults: new{ id,, controller = "StudentsV2" }
+}
+
+Or specify using ROute attribute
+[Route("api/v1/students")]
+[Route("api/v2/students")]
+
+2. Using Query string params:
+SelectControllr() in DefaultHttpControllerSleector class decides which controller to invoke 
+we override that method implemenetation in our custom class
+and based on route data and query string or accept header or etc, we specify our controller logic 
+we can replace defaaultSelect controller with our custom select controller
+
+3. using custom headers STudentXVersion : 1 we can get request.Headers
+4  using Accesp Header : accept:appl/json; version=   1 ... we can get request.Headers.Accept
+
+
+Content Negotiation
+Web api request validation: https://www.c-sharpcorner.com/article/learn-about-web-api-validation/
+use Data Annotations for properties
+use IvalidatableObject and define custom rules for Class Level Validation and use ModelState.IsValid
+
+
+Custom filter for validation:
+To avoid having to check for model state in every Put/Post action method of every controller, we can generalize it by creating a custom action filter.
+public class ValidateModelStateFilter: ActionFilterAttribute {    
+    public override void OnActionExecuting(HttpActionContext actionContext) {    
+        if (!actionContext.ModelState.IsValid) {    
+            actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, actionContext.ModelState);    
+        }    
+    }    
+} 
+ config.Filters.Add(new ValidateModelStateFilter()); in WebApiCOnfig
+ ...........
+ AuthorizationFilterAttribute(authcontext, onauthorization)  , ActionFilterAttribute(actioncontext, OnActionExecuting)

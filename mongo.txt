@@ -1,0 +1,62 @@
+
+find- select 
+insert- insert 
+update - update 
+top 1 - justOne
+top n - limit 
+order by - sort
+
+Mongo Db:
+- show dbs 
+- use mycistimers
+- db.createUser({
+	user: "john",
+	pwd: "efkhil",
+	roles :["admin"]
+});
+
+- db.createCollectioon('customers')
+- show collections
+
+- db.customers.insert({fname:"john", lname "Doe"});
+- db.customers.insert({fname:"john", lname "Doe"}, {fname:"mike", lname "smith", gender: "male"	});
+- db.customers.find();
+- db.customers.find().pretty();
+- db.customers.update({id:1},{fname:"johnnn",lname :"Doeee"}); //hadve to rewite all props
+- db.customers.update({id:1},{ $set:{age:30}});
+- db.customers.update({id:1},{ $incr:{age:5}});
+- db.customers.update({id:1},{ $unset:{age:1}});
+- db.customers.update({id:9999},{fname:"johnnn",lname :"Doeee"}, {upsert:true}); // if no match found, will insert 
+- db.customers.update({id:1},{ $rename:{"gender":"sex"}});
+- db.customers.remove({id:1});
+- db.customers.remove({id:1}, {justOne: true});
+
+//complex obj :
+ { fn:,
+	ln:,
+	address:{
+		city: "Boston",
+		state:,
+	},
+	roles:["admin", "user"]
+  }
+	
+
+	
+- db. customers.find({$or:[{id:1, {id:2}]}); //like IN operatoir
+- db. customers.find({age:{$lt:40}}); // age less than 40 
+- db. customers.find({"address.city":"Boston"}); // quotes is imp
+- db. customers.find({roles:"user"}); // find all customers who has role: user
+- db. customers.find().sort({lastname:1});  // put -1 for descneidgfg
+- db. customers.find().limit(4) //top 4
+- db. customers.find().forEach({item)= > log(item.name)}});
+
+https://docs.mongodb.com/manual/reference/sql-comparison/
+mappings:
+table -  collection
+row - bson or document 
+column - field
+
+
+
+

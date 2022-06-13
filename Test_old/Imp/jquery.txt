@@ -1,0 +1,93 @@
+//EACH
+$('#divReportLIGridList .each-line-item-checkbox').each(function (index, item) {
+        var $this = $(item);
+});
+
+ lookUpCellValues.forEach(function (v) {});
+		
+//GREP
+var reportType = $.grep(globalAllReportTypesList, function (t) {
+        return t.Id == reportTypeId;
+});
+	
+//FILTER VS GREP
+var filteredData = globalSavedFansData.allSavedFans.filter(s => lineItemIds.includes(s.LineItemId.toString)); 
+ or
+var filteredData = $.grep(globalSavedFansData.allSavedFans, function (i) {
+				return lineItemIds.includes(i.LineItemId.toString())
+});
+			
+        
+//SPLIT, SUBSTRING AND INDEX OF 	
+var url ="http://www.youtube.com/watch?v=u8nQa1cJyX8&a=GxdCwVVULXctT2lYDEPllDR0LRTutYfW";
+var video_id = url.split('v=')[1];
+var ampersandPosition = video_id.indexOf('&');
+if(ampersandPosition != -1) {
+  video_id = video_id.substring(0, ampersandPosition);
+}
+
+//Creating jquery element  as object
+  var $html = $("<iframe>")
+            .css("width", "100%")
+            .css("height", "315px")
+            .css("max-width", "560px")
+            .attr("frameborder", "0")
+            .attr("allowfullscreen", "allowfullscreen")
+            .attr("src", "https://www.youtube.com/embed/" + idVideo);
+			
+			
+    var $empty = $("<div>").append($html);
+    $("#iframeContainer").html($empty.html());
+	
+	
+	
+	============================================================================================
+	
+	
+Merges two arrays, altering the first argument.
+
+1
+$.merge( [ 3, 2, 1 ], [ 4, 3, 2 ] )
+Result:
+1
+[ 3, 2, 1, 4, 3, 2 ]
+========================================
+Merges two arrays, but uses a copy, so the original isn't altered.
+
+1
+2
+3
+var first = [ "a", "b", "c" ];
+var second = [ "d", "e", "f" ];
+$.merge( $.merge( [], first ), second );
+
+
+==============================================================================================================
+$.extend --- Merge the contents of two or more objects together into the first object. = https://api.jquery.com/jquery.extend/
+https://stackoverflow.com/questions/4528744/how-does-extend-work-in-jquery
+https://stackoverflow.com/questions/749084/jquery-map-vs-each
+https://stackoverflow.com/questions/4215737/convert-array-to-object :: assign
+========================================================================
+MAP/ returns array
+var arr = ['a', 'b', 'c', 'd', 'e'];
+$( "div" ).text( arr.join( ", " ) );
+ 
+arr = $.map( arr, function( n, i ) {
+  return ( n.toUpperCase() + i );
+});
+$( "p" ).text( arr.join( ", " ) );
+ 
+arr = jQuery.map( arr, function( a ) {
+  return a + a;
+});
+$( "span" ).text( arr.join( ", " ) );
+</script>
+
+O/P
+a, b, c, d, e
+A0, B1, C2, D3, E4
+A0A0, B1B1, C2C2, D3D3, E4E4
+==============================================================
+SPLICE
+https://www.w3schools.com/jsref/jsref_splice.asp
+==================================

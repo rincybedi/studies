@@ -1,0 +1,11 @@
+Interfaces can be used for :
+
+1. testability: we cant mock a class which has dependencies on other classes in unit testing, so better to use Interface in constructor and let the client class defines the concrete class for same purpose
+
+2. Extensibility: we can  various have types of logger  classes like FileLogger or MailLogger and use OCP and we dont have to change our functional module at all
+
+3 DI
+4 polymorphism
+5 Let us program to abstraction and not implementation
+6. Loose coupling
+7. Contract, enforce rules

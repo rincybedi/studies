@@ -1,0 +1,47 @@
+css box model
+	inline vs inline box- allow width, height and padding
+	float n clear
+	
+	say div1 is flooat left and div2 placed after div1, if we diont have clear on div2, it wil just overlap on floated div1, if we specify same dir: clear right to div2, it will be cleared from floating to left
+		
+	max-width and marfinauto- deifne maxwidth to a block level elment instaed of width to avoid  scrollbar 
+
+	flex - row
+	align items - vertically
+	justify-content:  horizontally
+ 
+	GRIDS //
+	CSS Position In 9 Minutes
+	
+	display :grid
+	grid template columns : 70% 30%
+	grid template columns : 1fr 2fr 1fr ..fractions
+	grid column gap : 1em
+	grid gap
+	grid auto rows :100px // for heoghtss
+	grid auto rows :minmax(100px,auto)
+	
+	css positons:
+	
+	relative allows left right top btoom
+	move ur block out of document flow
+	
+	absolute
+	document ignores abslute ekenent
+	allows left right top btoom from relative positioned parent
+	
+	fixed:
+	like absolute but fixed to documemt not to parent
+	still see fixed poss ele with scrollbar
+	
+	sticky L : fixed and relative
+	
+
+    for position fixed element, specify top left else they dont work
+display:grid;(or flex)
+
+align-items:center//vertical;
+justofy-content:center//horizontal
+for heoight : 100%, check parent height
+if parent height is 0 , absolute child top wont work
+fixed is like absolute with top left % but it relative to documemt

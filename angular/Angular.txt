@@ -1,0 +1,409 @@
+before angular 2 - angular js
+	SPA only the content which is changed is renndered
+	it follows mvc concept
+	all code in typescript(data types tec)
+
+	angulart cli - ng g c component
+	module vs directives vs services
+	ng new my-app
+	ng serve
+	styesheet format - css, saas, scss, stylus
+
+	2 mains json:
+	package.json:
+	angular.json
+	src/index.html - <app-root>
+	app folfer
+
+	@Componenet({ // decorarotor
+		selector:	'app-server'// looks for the specified tag and injects code there , u can have [app-server] as attribute selector too , but use it like <div [app-server]> or 
+			.app-server , id 	doesnt work
+		templateUrl:
+		styelUrls:
+	})
+
+
+	export class Appcomponent implements OnInit{
+		name ="rincy";
+		constructor(){
+		}
+		
+		dosmething(val:String):void{
+		}
+		
+		ngOnInit(){
+		default values setup...
+		}
+	}
+
+	<buttton (click)=""
+	<input 
+	(keyup.enter)= ""
+	[(ngModel)]="name"
+
+	<li *ngFor="let item of list, let:index">
+		<input TYPE="cehckbox" [(ngModel}]="isCDone"> {{item.etst}} // ngModel is a directive
+	</li>
+	lifecycle hook:
+	OnInit
+
+	DATA BINDING - COMMUNICATION
+	1 STRING INTERPOLATION {{}}  PROPERTY BINDING []like [disabled], [innertext]
+	2.EVENT BINDIDNG  ()
+	TWO WAY BIDNING [()]
+
+	(input) ="onEnter($event)'
+
+
+
+	app.module.ts---------- Module represting whole app - bundle of fucntionalties tied together
+
+	import {NgModule , Componenet,OnInit } from @angualr/core
+	FormsModule from @angualr/forms
+	Appcomponent
+
+	@NgModules({
+		decalrartions: //register all compnents here 
+		providers:[] //DI services
+		imports:[], // like http moduel or api or  FormsModule
+		bootstrap:[Appcomponent]	
+	})
+	export class  AppModule{}
+	node js used by cli for behind task and depndenceis
+	for adding css file globally like bottsrap use its path in styles in angualr-cli.json
+	only 1 file is serverd by server - index.html (SPA)
+	when we ng serve, bundle scripys excuted which starts execturing main.ts file first-main.ts has AppModule in ite bottstarpModuel, which related to app.moudle.ts
+	enabelProdMode
+	componenst(just a class instatatntied  are reusable
+	 differentiate a class compennet to bnotify angular this is special classs using decoraotor
+	 decorarotor enhance the class  @Componenet
+	 
+	export class AppModule
+
+	Directives - instructiosn to DOM
+	@Directive({
+		selectore:[myDir] // liek attribure	
+	}})
+
+	<p myDir>
+	other exMples of directives - *ngif, ngFor
+	* indiactes structure durectives
+	<p ngif="" else target>
+	<ng-tempalte>
+	<div #target>
+	local refernce #targert
+
+	Attribute directive [ngStyle]="{bgCOlor:getColor()}" ngClass] ="classname: 1==1"
+	sourecmap for debufging from main.bundle.js
+	Augury`
+
+	Binding to custom properties:
+	//all propetries aof compnent are inaccesible outsdue
+	Pass data from parent to child with input binding :
+
+	 Intercept input property changes with ngOnChanges() -hook :
+	 
+	 
+	 Parent listens for child event: EventEmitter property @Output
+	 @Output() voted = new EventEmitter<boolean>(); //child
+	  this.voted.emit(agreed); //child
+	  
+	  local refernces and Viewchild:
+	  #element , click ="add(elemen)", elmenet:<HtmlInoputEmelment>
+	  @viewchild('elemen') newinp :ElementRef; (like a watcher)
+	  this.newInp.nativelement
+	  <ng-content> like slots : projecting content from the parent component into the designated child component.
+	  
+	  DI is a coding pattern in which a class asks for dependencies from external sources rather than creating them itself.
+	  
+	  Injectable
+	  @Injectable()
+	  httpservices.ts /logging servuce
+	export class HttpService {
+		
+	}
+
+	util:
+	all routes an constants
+
+	Use pipes to transform strings, currency amounts, dates, and other data for display. Pipes are simple functions you can use in template expressions to accept an input value and return a transformed value. 
+
+
+	general maint - to add class/ subjects/exams
+	Exam maint - maintain exmas for class
+	Exam Subject - maintain subject for each exma of a clas
+	Marks maint - list all strudent of exam of class and show popup for their marks
+	ExcelPackage class ExcelWorksheet, porpeties such as ttile and bytearray
+
+	@Directive({
+	  selector: '[appHighlight]'
+	})
+
+	observables as an interface to handle a variety  of common asynchronous operations. 
+	For example:
+	HTTP module uses observables to handle AJAX requests and responses.
+
+	The RxJS library -observables
+	ajax -subscribe  map, retry, catchError
+
+	Lazy loading
+	Observale vs promise -https://medium.com/javascript-everyday/javascript-theory-promise-vs-observable-d3087bc1239a#:~:text=a%20Promise%20is%20always%20asynchronous,get%20a%20new%20tailored%20stream.
+	Fi tters in mvc
+	objectcontext vs dataconrtext
+
+	https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e
+
+	Promise {<fulfilled>: undefined}
+	__proto__: Promise
+	catch: ƒ catch()
+	constructor: ƒ Promise()
+	finally: ƒ finally()
+	then: ƒ then()
+	Symbol(Symbol.toStringTag): "Promise"
+	__proto__: Object
+	[[PromiseState]]: "fulfilled"
+	[[PromiseResult]]: undefined
+
+-------kudevnkat - angualr-----------------
+	performance - angualr 2 is faster than angualar
+	mobile support
+	Component based develpment
+	more supoorting languase:es5, es6(es2015), ts
+	Ecmascript - javascript standard official name
+	transp[ilation - it converst EC6 to EC5
+
+
+	Typescript - by Microsoft
+	ES6 supports classes, modules, arrow fucntion(oops), interfaces, inheritamce
+	Property and attributes arre diffenet and so is attribute and property binding:
+	
+	<input value="Ribncy">
+	inputEl.getAttribute("value") - rincy //html attrr (during page load)
+	inputEl.value - rincy //property(repersnetation in DOM trre - keeps curernt state)
+	wjhhen we type Rinu in texbo, it change sthe property not the attribute
+	for attriobte bindig(like colspan- this dont have property , we use
+	<input attr.value="{{test}}" or [attr.avlue]="test"
+
+
+	Use trackBy  with ngFor  will imprve performave - instead of changing dom all for elements, it will upadte dom for changed element with for list 
+	Pipe - date | uppercase	|cuurency
+	emp.pipe.ts
+
+	@Pipe({
+		name:"MyPipe" // | MyPipe:name
+	});
+
+	export class CustimPipe implements PipeTransform{
+		transform(value:str):str{
+		}
+	}	
+
+	==================================
+	COnatiner and Nested Components: (parebt and hild)
+	both @imput and @putput on chidl
+	Parent to child - 
+	//child
+	@Input
+	all:number
+
+	//parent
+	<child-selector 
+	[all]="getAll()"> // all is now a input property to child-selector component
+
+	-------------------
+	 Chidl to Parent- CHILD EMITS  , PARENT CONSUMES 
+	 
+	//html 
+	<input type="radio" [(ngModel)]="selcetdradioValue" (change)="onRadioChanged()"> 
+	 onRadioChanged(){
+		 this.countChanged.emit('selcetdradioValue') // the param or PAYLOAD of emit is String, match above
+	 }
+
+	 
+	 //in child	ts
+	 selcetdradioValue:string ="alll";
+	 
+	 @Output
+	 countChanged:EventEmitter<string> = new EventEmitter<STring>(); //string 
+	 
+	 //parent
+	 selctedChoice= "All"
+	 onCustomEventChanged(paylaod){
+		 this.selctedChoice = payload;
+	 }
+	 
+	 
+	<employee-count (countChanged)="onCustomEventChanged($event)">
+
+	<ng-conatiner *ngFor="let emp in employees"> //CANT USE 2 DIRECTIVES IN 1 TAG , SO USING NG-CONATINER	
+			...
+		<li *ngif="selctedChoice=='All' || selctedChoice == emp.Gender }">
+			
+	====================================
+	Interfaces:
+
+	prevents typo error, say for list f emp, u define propertyname as 'nane' instead of 'name'
+	employees:IEmpoyee[];
+	now it gives complie time error sipport too and intellise
+
+	Angular comoponent lifecyle hooks:
+	orderwise:
+	//all are interfaces
+	ngOnChanges - whenever input valeu changes, the hook method recievs a SimpleChanges object which has current and previosu value	 
+
+	ngOnInit - after constructor and afetr ngOnChanges hook for the ifrst time, mostly used for compoent iniititalization and database retrival
+
+	ngDoCheck
+	ngOnDestroy - when ng destory a component - for clean up
+
+	---------------------------------
+	Services:
+	say employees list is not coming from  a service method
+	prevent DRY
+	resue data or logic across  multiple comonents
+
+	@Injectable()
+	export class MySerive{
+	}
+
+	short hand syntax of constructor
+	 export class MyClass{
+		constructor(private _empService:MySerive){
+			this.emps = this._empService.getEmployees();
+		}	
+	 }
+	 
+	 providers:[MySerive] insdie @Component{}
+	 constructor not good place for service calls, we dont want time consuing logic inside the constructor\
+	 use ngOnInit - best for servuce calls
+	 
+	DI : when u instantiat MyClass, an instance of MySerive class will aslo be created and constructor will initialize _empService to that object, whic can be used to evoke mthod of MyServiec class
+	imp of DI	
+	 ----------------------
+	 angualr and web api
+	 add a eweb api project and ado.net model, add contrllers
+	 add methods : GetEmps etc
+	 
+	 Angualr buidlin in HTTPservive from HttpModule
+	 make http request in servuice constructor
+	 
+	 import {http} from '@anhgua;r/http'  //in service
+	  import {Observable} from 'rxjs/Observable'  ;//in service
+	 constructor(private _http:http){ //Service c;ass has npw DI on http ie http is an injected dependency
+	 
+	 getEmops() : Observable<IEmpoyees[]>{
+		 this._http.get("url") // get methods gives Obseravle<response>
+			.map((response:Response)=> <IEmpoyees[]>resposne.json()) //map OPERATOR OF RxJS	 coverst resposne to IEmpoyees[]
+			.catch(	)	 // amnother op of txjs	
+					 
+			 }
+	 
+	 Observale: asynchronous Pattern
+	 Obseravle emits data or notfications to observres over a period of timwe 
+	 observers or subscribers subscript o Observale
+	 While subscribing they specify a callback fucntion (Subscribe) and within that callacks we write to process data items emditted by Obseravle
+	 eg MyService is Obseravle and Employee class is Observer
+	 
+	 
+	 ngOnInit(){
+		 this._empService.getEmpllyees()
+		 .subscribe(res=>{
+				this.emps = res
+		 }
+		 
+		 subscribe(onNext, onError, onComplete)
+		 OnNext - Obseravle calls this method whenever it emits an item,
+		 onError - IF ERRO COCURS
+		onComplette = when last time OnNext is called, all items are emmitted
+		
+		CORS - Acces COntrol Allow Origin (AcAo) header
+		web apu proj - in config - 
+		<add name "AcAo" value ="* ">
+			<add name "ACAh(headers)" value ="*ContentType">
+				<add name "AcAm(methods)" value ="GET PUT BLA....">
+
+	===============
+	Routing
+	 import {RouterModule	, Rooutes} from '@angualr/router'
+	const approutes :Routes= [
+	{ 
+	path :"",//home , ** for NOPageFound Comp
+	redirecTO:"",
+	cpmponent:"",
+	pathMatch:"full"
+	}]
+
+	tell angular to use this in imports:[RouterModule.forRoot(roures, {usehash:true)] // this will add # in url
+	routerLink
+	<router-otlet> // where to render component for a routeer at this lcoation
+	have <rewrite> rule in config, for usehash = faklsE(by default_
+
+	Route paramaetrs:
+	path:"Employees/:code"	 for navigating to emo details like /emp/code_1
+
+	<td>	
+	<a [routerLink]=[ '/emp', emp.code]"
+	use acivated rote to capture the param value (code here)
+
+	Angular njector does DI for the service in [Providers]
+	DI:
+	Prblems with using new in Constructor -
+	1. difficutl to maintain - any new params adedd to Processor will need to be maintained again in COmputer calss
+
+	constructor(){
+		this._processor = new procssor()
+	}
+
+	using DI:
+	constructor(private _processor:Processpr){
+
+	} // angualr Injectopr (AI)will cerate instanec of this class and inject it
+
+	2. the instances cerated using new are lcoal to each class, cant share data/lgoic
+	wgereas AI provides a singleton- singel instanec of service shared by all compnents
+
+	3.new Clas() is hard to unuit test
+
+	ROot App Injector - @ngModule{
+		providers:[service]
+	})
+
+	for speciifc omponent - use @Compmomet{
+		 :[service]
+	})
+
+	folows parent-child hierracjhcial check on injector
+	Angualr asks the component(which is using srevice ofcrs), do u have insance of service(Injectorr) avavialvle, if it doesnt have, it askes it parent component, if parent also doesnt have, it aks for Roort App Injector, else error - no provider avaialbel(request buubles up to parent)
+
+	Router service - navigate()
+
+	goto(){
+		this._router.navigate("['/empyess']);
+		
+	Promises:
+	angular buidlin http srevice returns Observale, to use promise,:
+	toPromise (rxjs operator)
+	getEmp():Prmose<Emp>{
+		return this._http.get()
+		.map()
+		.topromise()
+		.catch(errp)
+	}
+
+	while consuming service in promise, do change: subscrbe() to then()
+
+	observable vs promise
+	lazy/not lazy
+	multiple emits/seingle emit
+	can be cancceled/cant
+	multiple operators/none
+
+
+	Observable RetryOnError
+	Unubscrieb:
+	anhualr js - controller n $scope based
+
+	
+share data bw non sibling componenets :
+We use behaviourSubject of rxjs, create a source and current (as OBserbale) element and use source.next(msg) in publishing service method(datService) and inject that service in other components and subscribe to that(current.subsribe(x>this.msg  x)
+

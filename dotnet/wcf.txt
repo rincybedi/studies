@@ -1,0 +1,77 @@
+WCF
+	=============================================================
+	Consuming WCF Service
+	
+	java web app client - xml over http : for interoperaboility = .net web service
+	windows app  clie nt - binary over tcp: for perfiormance  = .net remoting service
+	cz of diff protocols and messae formats, we need to know both techn 
+	With WCF, we implement a single srevive amd expose 2 endpoints,
+
+	1. Createf new wcf srevice : It adds ref to core wcf aseembly: System.SeviceModel 
+	IhelloService.cs - [ServiceContatc] and  OperationContract 
+	HelloService implemnet ing IhelloService
+
+	2. Host this serviec using console App(Windows forms, win service or iis) 
+	- create a cls lib and add ref to  core wcf aseembly: System.SeviceModel
+	- add ref to abover class library (Service app)
+	- configuration for endpoints in this servivde host app
+
+	<srevices>
+	 <service name="HelloService" behaviorCIOnfig="myServiceBehavior">
+		<endpoint 
+		address= "HelloService" //relative address
+		binding= "basixHttpBndidng" //diff protocols and messae formats
+		contract= "IhelloService" //due to this clienta ble know what methods are presnt fromn this service
+	  >
+		<endpoint  ...>
+		//client add ref to this wsdl(web service description lang) - for metdata exhange
+		<endpoint 
+		address="mex"
+		binding= "mexHttpBndidng"
+		contract ="IMetadataExchange"
+		>
+		<host>
+			<baseAddresses>
+				<add baseAddress="htttp://localhost:8080/">
+				<add baseAddress="net.tcp://localhost:8090/">
+	 >
+	>
+	<behaviors>
+		<serviceBehavior>
+		 <behavior name="myServiceBehavior">
+			<serviveMetadata httpgetEnabled="true" />
+			
+	-Open SreviceHost class 
+	uisng(SreviceHost hpst = new SreviceHost(type of helloservie){
+
+		hpst.Open();
+	}
+		
+	3. Create a client app 	
+	- wsdl doc is used by client to cerate proxy classes to consume service 
+	- add service ref to HelloSrevice, automatically create a proxy class(HelloService) with the name u sepcified in config name for service
+
+	- using this proxy :
+	HelloService.HelloServiceClient client = new HelloServiceClient(endpointName)
+	client.GetMessage();
+
+	----------- ----- 
+	Hotsing options :
+	 1. SelfHosting(using console or WINFORMS APP) : see above
+		- Hostong a wcf service in any .net managed appln like Console or Winforms is self hosting 
+	 2. Windows Service :
+		- run in background, dont haev UI, configurable on system boot, check - services.msc
+		- provdes event logging, error reporting etc for OS provided by Microsoft
+		- almsot same to conosle hsotong - add windows app and on in codebehinf, we have OnSTart, OnStop events , USe   obje to open the host(same)
+		- add installer 
+	 3. IIS(supports only http protool),
+	   - add new WEBSITE using WCf Srevice - will add a svc file(Important file)
+	   - Iis uses the svc file to locate the service 
+	   - Svc file has ServiceHost attribute 
+	   - create an app in iis , pointting to above site, browse localhost/helloService/helloservice.svc
+	   - for client app, add refe to above svc 
+	   - only dioff we dont need to write code to instantiate    ServiceHost obj
+		
+	 4. WAS(with IIS - suppports all protocols)
+			
+		

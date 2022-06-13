@@ -1,0 +1,153 @@
+
+Assembly : fundamental unit of deployment 
+precomiled code which can be run by CLR
+
+Console app- exxe
+class lib - dll	
+dll vs exe -
+exe runs in its own address space
+dll cant run/invoked by itself, it needs a host or consumer, dll runs inside another memory space, u refernce a prohect or class lib into console app (consumer)
+CLR,
+ Class library
+CTS
+App domain
+
+
+JIT: IL	 to native(byte code) which is processed by CPU  , independent of OS
+MSIL OR IL: Intermedaie lang :
+Provides instruction like execption hand;in, memeory management 
+Provides instruction like initizling var aand storing vars and methods
+why we need of IL?
+so that the appln can be run without any performance iverheade in any system or platform independt of OS and harwdware config
+
+
+CTS:
+common type system :
+set of rules to govern what datatypes are liek range,indexbound, coversion etc etc
+members:
+ for types : lcass, struct, interface, deleagtes, 
+ common for all langauyges
+
+CLS:
+common lang. spec: common set of rules for all langyages: for inter lang capapbiltuy
+
+
+clr:
+most imp part of .net framwrok
+say , u write a code .in c# and build it, its covrted to IL, after this CLR comes into picturwe, responsibele fr:
+
+	memmory managemt, securtuy, thread management , exceoption ahndlig, class loading 
+	
+Manged and Unmanged code:
+managed: mainaged by CLR , Clr has full authority , all progress in .net framwprko
+nmanageed- no manager : program in c	
+
+managed: GC is srepsonibile for managing memory
+unmana	: Memory is managed bu Runtikem env only
+
+Steps in ecxecution of managed codE:
+1. choose a comiler to execute code
+2, code to IL By comipler
+3 IL passed to CLR, for converison to Native code by Jit
+4 Native code is eceuted by .net run time
+
+state managment :
+maintain the state of all objects in the runtime , all webforms, webpage, uc etc are objects 
+client sode:store info on client machione
+server side: stoe info on server 
+
+class is scafoolding of object 
+
+componenets pf assemnly:
+Resoucre - files
+msil
+ metdadata
+manifest - info abt assembky
+
+caching:data, opage, fragment-(uc + shared) ; VaryByParamns
+r/w spped to memmory is expoentially faster than r/w to disk
+
+constructor tuyeps: private, default, parameterized, static, copy
+
+use of session: store data or object,stored at runtime server, so sceured
+
+use of manifest:metadat of assembly:
+verison, ref class validn, security identifucn, scope of assembly 
+
+CAS:no unaut acces to code, program by user
+
+GC: ensure no memory leak or ineffeciency 
+allocate/ deallocate memory	
+done by performing checks on references of var/objects - i fnto required, deallocated n cleaned
+
+ GAC	:	PART OF clr, used to store assemeblies that are shared accross applicns
+cross page posting:linkimg fata stored in 1 page to another,PostbackUrl
+
+Serailization: system.runtime.serializn , json- javascriptserialer, xml, binary
+.Serialize = .net object to JSON strimg
+, .deserialize
+
+
+MSI Creation:
+Add a window proj
+Add a Installer setup project, add icon and shortcuts for User Desktop/Programs' menu
+define properties for setup proj : name, author, title et c
+define some configuration 
+at application folder: add output path(releaase) files 
+
+
+cors:
+browser alow a webpage to make ajax request only iwthin same domain(protocol/domain/port)
+this is same origin policy , broswre policy prevent croos original based request
+
+if say, js is hosted in different appl, and web service provider is in diff appn, it wint make ajax' call
+so, we need cors:
+ by jsonp - web broser allow js to be consumed form diff origin
+ jsonmediatypeformatyer
+ by cors
+ install pkg, for cors
+ use EnableCO rsAttribte (origin, headers, methods) *.*.*
+ 
+Dispose vs FInalize
+GC is repsobible for cleaning up managed resources,  for freeing up unused refernces
+1
+For objects which have refernces and are effectivley usused, GC wont collect them, they ill stay in memory forever.Eg: this can happen when u register evenets and never unregister them
+2
+GC wont free up unmanaged reosuces
+like Graphics, File handlees, Streams, Db connection or nwteork calls, we need to explictly call Dispose or Finalize methpods
+
+Finalize is used as destructor, but is non determisitic, it depends on Gc when it will come into play and free up reourcses
+Dispose() of IDisposable interface is explicitly called to free up unmanged resouces immediatly
+
+We can detect a memory leak uisng Diagnostic Tool Window or some profiler
+Shows Prcess memory(MB ) and GC(yellow dots) and Snapshot feature
+
+---------------------------
+Debug vs release :
+	application has 2 phases: development and producntion
+	In dev, developers want to debug many things : like know stack trace, or values variables hold
+	In prod: performance is the factor
+eg main-m1-m2-m3(has eceptions):
+debug : complete stack tarce
+release: only m3-error
+
+1.Debug code is not optimized whereas release code is 
+2. all debug symbols are removed in relase mode :
+@if Debug
+...line // in release mpde, this line wont be printed or executed
+#endif
+
+
+ u can build using vs ide or using command line by msbuild.exe
+ 
+seee settings for csproj liek :
+How errors and warning are treated,
+ For Debug COnfiguration ; output path : /bin/Debug	
+For Release COnfiguration ; output path : /bin/Release	
+
+
+Buikld: oonly when there is change in appln files, else skiipped unchanges proj 
+clean : will remove bin and other output path solution and then u can buid again
+rebuild = build project even if there is no chnage (clean + build)
+
+------------------------

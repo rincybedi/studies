@@ -1,0 +1,140 @@
+ A global execution conrtext is created for each js cpde into 2 phases:
+	1 memory   Phase - goes line by line n allocate memory for varuiables(undefined) and fucntions (whole body of fucn) - just like key val pair
+	2  code execution phas - goes line by line(synchr) and initializes variables(i:2)	
+
+	when js engine encouter a fun call, it create another execn context inside global context n push this newly created context inside call stack
+
+	Hoisting: 
+	even before the forst lien is exec, js has covered phase1 , so hoitsong
+	see what Global holds for methods and Global.window holds for variables in console
+
+	Reference error// for var when not decalred, no memory allocation iowth this key
+
+	eg
+	getName(); //getName
+	getName1(); //typo error getName1 is not a fun
+
+	getName(){ // a function in Global context
+		log("getName");
+	}	
+
+	var getName1() => {  // a variable in Global
+		log("getName1");
+	}	
+
+
+	async n await 
+
+Functional Programming:
+===================================================
+1. 
+Higher Order fucntions:
+Fuctions that take another fucntion as argument or return another fucntion
+
+fucntion y(x){
+	x();  // x is a callabck function
+}
+
+function x(){
+
+}
+
+other example: a.map((function(){}))
+
+2. First Class functions:
+ goto A.js
+
+Let , var vs const:
+1. Let and const are also hoisted but in different space than Global(not attached to window or this)
+they are in temporal death zone: reference error util they are decalred
+2. let and const cant be redeclraed 
+let a  = 10;let a = 100; // will giove syntax error
+3.in const, we have to decalre and initialize it there only, else syntax error
+4. if we reinitialize const , it gives type error
+
+BLOCK SCOPE:
+1. let and const vars are block scoped.
+A block has compundeed statements(multiple statements)
+var a = 100;
+let b = 3; // in "Script" Scope
+{ 
+ var a = 1; // a is in "Global" Scope ; // a is shadowed to value 1 
+ let b = 2; // b and c are hoisted in "Block" scope , check in dev tool; b = 2
+ const c = 3;
+}
+
+we can access a here, but not b(if b is not declared at line 59) and c.
+// a is shadowed to value 1 
+// b is in different scope, so b = 3
+// this scope can be a function also
+
+2. Illegal Shadowing
+
+let a = 20;
+{
+var a = 10;//syntax error a already declared	
+}
+
+we can shadow let by  let OR var by var OR var by let 
+but not let by var 
+
+CLosures:
+
+Function along with its lexical scope forms a closure
+when u return a fucntion from another function, it doesnt only returns a fucntion, it returns lexical scope also ie it returns a closure.
+
+So thatsy the returned fucntion has access to variables in its lexical scope, although the main fucntion' execution is done, but those variables are not garbage collected
+
+Event Loop, Callback Queue and microtask queue:
+
+Fetch Api:
+DOm Api:
+SetTimeout:
+Console:
+LocalStorage:
+Location:
+
+These are all part of the Web or Browser api and not JavaScript engine 
+Js Engine is only responsible for maintaiing callstack for global execution context and functions
+
+setTimeout(function abc(){
+
+}, 1000)
+
+abc callback function is registered in web api environment and is pushed to callback queue after 1s
+It is duty of event loop to consistently monitor bth call stack and cb queue to push tasks from cb queue to callstack if its empty
+
+document.getElementById("btn")
+.addEventListener("click", function xyz(){
+
+})
+
+Simialr case for xyz
+
+fetch("url")
+.then(function fcb(){
+
+})
+ but in this case fcb pushed to microtask queue . This queue has higher priority than callback queue.
+
+All the fucntions that comes from promises or as result of mutation observers are pushed to microtask queue
+	
+Look for Constructor Function and Prototype :
+ https://www.javascripttutorial.net/javascript-constructor-function/
+ Prototype Inheritance
+ https://www.javascripttutorial.net/javascript-prototypal-inheritance/
+
+ need of arrow functions - mosh or wds
+
+//call apply bind: check A.js 
+
+//
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+
+.Net Framework
+Web Forms - SIteMaster
+MVC
+Web API - COntrollers, Views 
+
+==========================
+iis - http://librarymanagementsystem.com/ 
+- web api ,
+-db = BookLibrary,
+- tam@gmail/tamnsxs,
+-siteMaster
+-asp GridView
+E:\DemoProjects\Projects\trunk\LibraryManagement\LibraryManagement 
+
+
+Work on MVC - LibraryManagement
+
+
+===================================================================================
+
+
+iis - www.onlinevotingsystem.com
+- mvc + wcf
+datatable 
+-db = BookLibrary,
+- rincybedi@gmail.com/rincy,
+E:\DemoProjects\Projects\OnlineVotingSystem\OVS.Web
+
+
+
+iis - http://servicesonlinevotingsystem.com/
+wcf
+-db = OnlineVotingSystem,
+E:\DemoProjects\Projects\OnlineVotingSystem\OVS.Services
+===========================================================================
+
+iis - publichealthrecord.com
+- asmx.cs + wcf+datatable 
+-db = PHR3,
+- rincybedi@gmail.com/rincy,
+E:\DemoProjects\Projects\trunk\PHR3Demo\PHR3
+(Currently Datable not working)
+
+
+
+
+iis - publichealthrecord.com
+- MVC
+-db = PHR5,
+- rincybedi@gmail.com/rincy,
+E:\DemoProjects\Projects\PHR_MVC\PHR5
+(Currently anything  not working)
+E:\DemoProjects\Projects\PHR_MVC\PHR5
+======================================================================

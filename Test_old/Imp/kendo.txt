@@ -1,0 +1,17 @@
+ var grid = $("#divProjectMaintGrid").data("kendoGrid");
+ grid.select();
+ var dataItem = grid.dataItem(grid.select());
+ 
+ https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns
+ 
+	var treeView = $('#divTreeView').data('kendoTreeView');
+    var selectedNode = treeView.select();
+    var selectedDataItem = treeView.dataItem(selectedNode);
+	
+	
+	//Get Record Status filter
+    var filters = getRecordStatusFilter(ds.filter().filters);
+    ds.filter([]);
+   
+https://demos.telerik.com/kendo-ui/menu/context-menu
+https://docs.telerik.com/kendo-ui/globalization/intl/numberformatting

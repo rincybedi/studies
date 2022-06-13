@@ -1,0 +1,27 @@
+Architecture
+===================
+1. Node is a program that includes v8 javascript engines + additonal modules that gives us abilities not present inside the browser.
+2. Node provides a run time environment for executuings js code.
+Earlier (till 2008), we had only  browser like chrome which has  js engine v8 to convert js to machine lang ie only browser used to provide run time enviroment for executing js,
+after that, v8 was embedded in C++ program , called as node.exe
+3.Node is not a programming lang nor a framework, its a run time enviroment
+
+
+how it works?
+==================
+non blocking , Async nature - single thread execute all requests
+Uses event queue to process request 
+ideal for IO intensive apps 
+
+
+events :
+we have a http class in node which is used to create web servers
+that listens to a port and everytime a request arrives at port, 
+http class raises event, we listen to that event and we read the request and return response
+
+const event = new EventEmitter()
+event.on('eventname' , (eventargs) => {})
+event.emit('eventname', eventargs), 
+
+
+

@@ -1,0 +1,212 @@
+https://spin.atomicobject.com/2014/10/20/javascript-scope-closures/
+	https://api.jquery.com/
+	A framework is something that usually forces a certain way of implementing a solution, whereas jQuery is just a tool to make implementing what you want to do easier.
+
+	Utlities:
+	filter(with html or arrays ) vs grep(only for arays)
+	.eq- $( "li" ).eq( 2 )
+	$("div").get() n $("div").get(0)
+	merge(merge2 [] int 1 []),
+	extend(merge2 or more {} or [] int 1 {}, can have deep copy - true),
+	map(transform array or object into array), 
+	unique(only DOM), each, contains(only dom)
+
+	DOm manipluation:
+	after(outside) //before
+	append, appendTo,(inside) //prepend. prepednto
+	rmeove , empty, addclass, removeattr, removeprop
+	clone()
+
+	Traversing:
+	prev , next, parent, 
+	$("<div>")
+	$(".abc") gives the context , selector , length and element itselft in array, __proto__ - object
+	var jq = $.noConflict();
+
+	attr html vs prop DOm
+	ajax
+	https://stackoverflow.com/questions/38332701/fetch-vs-ajaxcall
+	fetch - text, clone, json, redirect ,fetch doesnt catch 404 in error ()
+
+	PROTOTYPAL INHERITANCE:
+	
+	Array.prototype or a.__proto__ // a is array
+			: lists all array fucntons
+			
+	Object.prototype or a.__proto__ // a is object
+			: lists constructor , getter setter , toString 
+
+	
+	
+	Function.prototype or f.__proto__ //where f is function
+		: list f()
+	
+	
+	a.__proto__.__proto__ // null, a is object 
+
+	JS--------------------------------------------------------------
+
+	Array: SLICE(extracT in range) SPLICE(uinsert/delet) REDUCE
+	 for of , for in , forEach,
+	-8 Must Know JavaScript Array Methods
+	find(descendents) vs filter 
+		
+	ES6 Modules, ES6 Arrow Functions
+	this doesnt get redfeined in arrow function 
+	javaScript Promises
+	strict mode- cant use undecalred vars; more secure js 
+	
+	call apply -  call an object method with another object as argument.
+	JavaScript Async Await -
+	
+	async vs defer attributes in Javascript web dev simplified
+	html parsimg, js download, js execution, resumme html oarsing
+	
+	nomal: parse:fetch:exceute:resume parse
+	
+	async:pasen n fetch:exec:parse
+	
+	defer: parse n fetchn complete parse: exec
+	
+	Array/Object Destructuring - site
+	Function Expression
+	indexof-and-findindex-
+	
+	Akshay:
+
+	Local Storage & Session Storage
+	Currying - 
+	EVENT DELEGATION-
+		based on buubling
+		attacg event to parent instead o fchildren
+		 
+	   'e' ibject of calback event gievs all info :
+			   document.getElementById("myBtn").addEventListener("click", function() {
+		  document.getElementById("demo").innerHTML = "Hello World";
+		});
+		
+	   data-attr // in e.target.datset  - behavioral pattern
+	   saves memory
+	   mauintainence - dom manipluation
+	   
+
+	async vs defer attributes in Javascript 
+	Prototypal Inheritance JS 
+	Lexical Scope
+	Hoisting
+	Debouncing / Throttling
+	Event buubling and capturing -usecapture
+
+	Private and static member in JS	
+	extension methods
+	kud---
+	Constructor function
+	closures
+	Object.Create(prototype)
+	Inheritance is proptype based	
+	Prototype in JavaScript
+	Abstract classes - cant create instance
+	polymorphism
+	Object reflection 
+	document.cookie -snet to server
+	JavaScript Cookies vs Local Storage vs Session'	
+	naviagotr.cookieEnabled
+	Httprequest.Cookies[key]
+	<noscript> - the content here will be displayed if js is ddisabled
+	--------------
+
+	JS Tricks
+	-------------------------------------------------------------
+	console.log(Array.from('foo'));
+	// expected output: Array ["f", "o", "o"]
+
+	console.log(Array.from([1, 2, 3], x => x + x));
+	// expected output: Array [2, 4, 6]
+	
+	let numbers = Array.of(3);
+	console.log(numbers.length); // 1
+
+	var a = ()=> {};
+	console.dir(a);
+	var b = [{name:'', age:'1'},{name:'', age:'2'}]
+	console.table(b, [age]);
+	console.time("test")
+	setTimeout(()=>{ console.timeEnd("test")});
+	var  c= {name:'rincy'}
+	Object.freeze(c);
+	c.age = 12; //wont render
+	Object.seal(c); //allow changing name prop
+	Object.defineProperty(c, "age", {
+		value :0,
+		writable: false
+		}
+	});
+	
+	
+
+	document.body.contentEditable = true;
+	<div contenteditable ="true"></div>
+
+	Arrow fun-ctions:
+	Normal js fucntion redenies the this keyword ie has this refrence from where(scope like global) its called
+	Arrow fucntion doesnt redfeine this , instead of  where its called, i ttakles reference where its defined'
+
+	-------------------------MISC--------------------------
+	https://webkul.com/blog/types-of-authentication-wiz-oauth-digest-basic-token-based/
+	https://stackoverflow.com/questions/19867599/what-is-the-difference-between-localstorage-sessionstorage-session-and-cookies
+	
+	jwt - 64(header)+base64(payload), use algo(hashes) using secret key - valid/invalid signature;
+	
+	adv- when multiple srevers(load balanced srevers maybe)	 share same secret key, no need to relogin
+	user info is not shared in session 
+	HS256
+
+
+    
+var x = items.filter((item)=> return item.price < 10)
+var x = items.map((x) => x.name)
+var x = items.find((x) =>x.name == 'book')
+var x = items.forEach((x)=> log(x))
+var x = items.some(x=>x.prce < 10) // bool
+var x = items.every(x=>x.price < 100) //bool
+var x = items.reduce((currentTotal, item) => { return  item.prcie + currentTotal},0)
+var x = numbers.include(2)
+let colors = ['Red', 'Green', 'Blue'];
+
+for (const [index, color] of colors.entries()) {
+    console.log(`${color} is at index ${index}`);
+}
+		
+function makePromise(completed) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            if (completed) {
+                resolve("I have completed learning JS.");
+            } else {
+                reject("I haven't completed learning JS yet.");
+            }
+        }, 3 * 1000);
+    });
+}
+let learnJS = makePromise(true);
+
+learnJS.then(
+    success => console.log(success),
+    reason => console.log(reason)
+);
+
+set - add, clear,delete(val);  entries(). forEach, has(val), keys()
+map - set(x, y), get(x), entries() delete(x) has(x)
+
+Memoization in js
+forward ref in react
+event ref in react 
+
+using middleware in react redux 
+event .. in react
+Object,create , when use?
+freeze vs seal 
+iframe disadv
+ 
+how to check if jwt expries
+signout user if no activity for long time

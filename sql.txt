@@ -1,0 +1,275 @@
+
+sql vs nosql: 
+sql based on structured data, table schema is fixed andlike columns are known before data entries, though we can modify it here
+no sql, attributes are added on the fly, not necessary for row t have each column 
+no sql - performance and scalable, horixonaly scalable
+sql  vertically scalable and is acid compliance 
+
+eg document:mongodb and couchdb 
+key value: redis
+columnL cassandra
+graph : neo4
+
+
+Indexes
+Views
+Triggers
+@@identity vs scope_identity
+CTE
+Contraints, GroupBy 
+where vs having : where cant vbe used with aggreagates m having can 
+where perform fiilter after aggregation, having before , so haoving is slower
+sql server intervieq questions :
+
+	 abc@aa.com / op- aa.ccpm
+	 substring(columnname, charindex("@", columnname) + 1, length ) 
+	 where length = len(col) - charindex("@",col)
+	 
+ table scan - bad
+ create index IX_tbl_Salary 
+ on tbl(Salary asc)
+ 
+	nth highest salary :
+	highest - select max(salary) from emps;
+	2nd highest - select max(salary) wherer salary <(selct max(salry from emps) from emps
+
+	nth:using subquery:
+
+	select top 1 salaruy from
+	(slect disticnt top n salary 
+	form emps
+	oder by salary desc)result
+	order by salary		
+
+
+	using cte:
+	with cte as(
+	select salary, dense_rank() over(oredr bu salary desc) as denserrank // 2 same salary gets same rank
+	from Emps
+	)
+ 
+	denserank vs rank =
+	both gives same rank to duplicates
+	rank skip the counter to which it id duplicated and skip those counters 1 2 2 4 
+	denserank doesnt 1 2 2 3	
+	row_number() gives sequential row no
+	coalesce(1,null, null) - retruns first non null, acceot  multiple arsg
+	 m (a, null) - retruns first non null, acceot  2 arsg
+
+	union vs union all (remove dupslicates/retain)
+	union oerforms sort to remove dup(slow) - check execution plan using ctrl L
+	order by sd be at last
+
+cursor
+cte
+pivot,
+merge 
+grouping ste, role , cube
+
+	sps:
+	system sps :
+	sp_help
+	sp_depends sp_name
+	sp_helptext - wont work for WITH ENCRRYPTOION
+	sp output params:
+	out or output in params
+	create proce etst
+	@empCount int out
+	as begin 
+
+	using :
+	declare @c int;
+	exec etst @c output // if u dont use out, its null
+	print @c
+
+	return values in sp:(for sstatus code)
+	exec sp return astatus 0 -success
+	else failure
+
+	return vs output vars
+	return only resturn int value, ouput can return any type
+	return - only 1 value, out[out - morethan 1 
+	return (select count) || @out_val = (select count)
+
+	using return :
+	@holdreturnval
+	exec @holdreturnval = spname 
+	---------
+	adv of sps:
+	1.resue exec plan:
+	exceution plan: for retrivibf data bya query, whats the best possible way avaialabe;
+	first check syntax of query
+	complie query
+	set exec plamn
+	thsi plan is cached, next time we run sp, it fetch from cache
+
+	2.reduces network traffic - dont use adhoc sql statements
+	3 resusabilty
+	4 better security
+	5 prevent sql injection attack
+
+	----------string fucntions:
+	len(), ltrime(), char(), ascii(), reverse(),
+	left(str, 3), right(), charindex('$', str), substring(st, charinxe('$"), length(str)-charinde('$'))
+	replicate("*", 3) , patindex(pattern, string) //suppport wildcards
+	replace(str, abc, deg) 
+	stuff(str, start, length, replacenebt
+	-----------)
+
+	datetime 
+	:time, date, dt, dt2, dtooset
+	getdate() currenttimestap
+	DATEPART, ADD , DIFF
+
+	CAST VS CONVERT //ANSI
+	CASR(DOB AS NVARCHAR) //SQLServer
+	CONVERT(NVARCHAR, DOB, STYLE_CODES	)
+
+	udf: -return sungle valeu
+	itvf - return table , iwthout begin endm : better for perf; possible to update underlying table
+	mtvf: with beign and end, return table() : define structire of retunerd table; cant update table;slow
+
+	deterministic vs non fucntions;
+	count() , max() - always give same result
+	getdate() - dont
+	rand(),non det, det if provide seed
+
+	temp tables:local and global
+	create table #temp in temp db
+	temp table avaialbe only for the connectio that created it
+	multiple local temp across mult connect(with some random)
+
+	temp var vs temp table: both are stroedin tempdb
+	temp table: real table- so index creation possible, can use select into , 
+	temp var:can be used as parama to fucntion,, prefered for small- mid sized data, dont paraticpate in transcavtion
+
+
+	global ##- destoyed when last connection is closed, uniuq
+
+	exec vs sp_excesql(use params instead of appending valeu into query;safer;prevent sql injection)	
+
+    
+SQL Injection
+ 
+ID inputp:
+106 OR 1=1 //select will give all rows : selecet * from User where Id = 106 OR 1 = 1(always true)
+106; Drop table Roles; // selecet * from User where Id = 106;Drop table Roles;
+
+UserName input :
+" or ""="				//select * form Users where UserName = " " or ""=" "; - username is empty or " = " (alays true)
+
+- do input validn 
+- Using Sql Parameters for proetction:
+txtUsrId= getRequestString("UserId");
+var sql ="select & form Users where id= @0"; //razor syntax
+db.Exceute(sql,txtUsrId);
+- Escaping - CLearForSQl ' => ''
+
+
+1. Prefer Joins as comp to subquery where existence of subquery is needed as it will iterate thru all records of outer query
+2. Cursors are bad for performance as they operate on row by row basis, they are most replacable by joins 
+
+
+say we use cursor to get id and based on the id we update a foreign key mapped table using some if else cases
+
+we can have update and casewhen clause in joins to improve  performance 
+3. Cursors are used when we need update/delete operations NOT on a set basis
+4. Cursors are pointer to a row
+
+Define or declare a cursor for a result set
+Declare cursor MyCursor For
+Select * from Product;
+
+fetch nex from MyCursor  into @ProductName
+while @@Fetch Status 0
+
+5 select * from sys.tables or InformantionSchema.tables
+
+Isolation levels:  
+1 Dirty Read:When 1 tran is permitted to read the data that has been modified by another trans but hasnt been committed.If trans A reverts the tran, B would have read dirty data.
+Trans B would be blocked by default as we have Isolation level : read committed by default
+
+Happens in Isolation level: Read uncommitted or with NoLock table hint:
+select  * from tbl (NOLOCK) where Id 1 //this allows us to read dirty data or uncommitted data
+
+2 Lost Update problem: when 2 or more T reads and update same data
+Qty : 10
+A sells 1 item
+B sells 2 item  
+Qty sd be 7 but is 9 as A overrides B updated data , we lost update from B, hence Lost updae
+
+Happens in I: Read committed and Read Uncommitted
+Fix: With I as Repeatable read, one T is chosen as Deadlock Victim
+
+
+3 Non Repeatable Read:
+when 1 T reads the data twice and in between those reads, another T updates the data giving both reads diff value, hence non repeatable read
+ 
+Happens in I: Read committed and Read Uncommitted
+Fix: With I as Repeatable read, 2nd T is blcoked as the resources are acquired by A
+
+
+4 Phantom Read : When T A reads data 2 times and in bw those reads, B has inserted new rows, so no. of reads are diffenret
+
+fIX USING : I as Serializable or Snapshot
+Serializable  sets a range lock 
+
+Repeatable read vs Serializable:
+Repeatable read prevents only NonRepeatable reads,wont allow another tran from updating or deleting data which A has read
+
+Serializable prevents NonRepeatable reads  and Phantom reads, wont allow inserting /update/delete
+
+Snapshot IL:
+Just like Serializable , Snapshot IL doesnt have any concurrency side effects 
+Serializable aquire locks , whereas Snapshot maintain versioning in TempDb
+
+Cross apply vs outer apply:
+Cross apply is used with table valued function instaedd of inner join
+Outer apply is used with table valued fucntion instd of left join
+
+Over clause:
+over  with  Partition is used to break data into paartitions
+syntax: func() over (patition by col1, ..)
+eg count(Gneder) over (parition by gender)
+
+RowNumber() over (partition by col1 Order by col1, ..) Whenever partition chanes, rowno is reset to 1
+ delete all duplicate rows except 1 
+
+ 
+ improve sql per:
+ 1, avoid OR and In operator these are heavy inclusive queries use Exists
+ 2. Avoid nested subquery, use joins or cte where existence muist be checked for each execution of outer query
+
+
+DbCOncurrencyException
+
+Indexes:
+Primary
+Non clustered - ref pointing to table
+Multi lrvrl- ref pointing to ref table (when non clustered indexed tavble is too large)
+B Index- Binary search 
+Sparse
+
+Collate: Unicode specific for sort, compare, retriev data in diff langs
+
+
+Views:
+
+
+create view mytestView
+
+WITH SchemaBinding  // doesnt allow deleting a column in any other query ie drop Message; fails; drop view first 
+
+With Encryption //sp_helptext doesnt work
+as 
+select top Message  from PhaseAlpha_Common_LogDetails order by 1 desc;
+
+With Check Option
+(select * from tbl wher gender = 'mr.' // inserting mrs. wont work)
+
+----------
+sp_helptext mytestView
+
+ --when some new colum is added 
+sp_refreshview  mytestVie
+select * from mytestView

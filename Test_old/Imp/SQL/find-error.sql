@@ -1,0 +1,1 @@
+select top 100* from PhaseAlpha_Common_LogDetails order by 1 desc

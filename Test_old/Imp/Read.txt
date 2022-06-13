@@ -1,0 +1,146 @@
+https://www.c-sharpcorner.com/blogs/abstraction-and-encapsulation1
+https://akveo.github.io/ng2-smart-table/#/demo
+https://stackblitz.com/edit/angular-jlk4vf?file=main.ts
+https://stackoverflow.com/questions/40404378/edit-and-create-with-ng2-smart-table
+https://github.com/akveo/ng2-smart-table/issues/779
+
+learn data migration from xls to db
+
+-----------insertBefore and after ----------------------
+
+ var openingIconDivHtml = '<span class="kendo-header-index-opening-icon"></span>'; // new dom
+    var closingIconDivHtml = '<span class="kendo-header-index-closing-icon"></span>'; // new dom
+
+    var gridDom = $("#" + gridId); //editing
+
+    $(openingIconDivHtml).insertBefore(gridDom);
+    gridDom.after($(closingIconDivHtml));
+	-----------------------------------------------
+	
+	
+	https://docs.telerik.com/kendo-ui/knowledge-base/grid-scroll-selected-row
+	
+	https://www.telerik.com/forums/kendo-grid-horizontal-scroll-bar
+	
+	https://www.techonthenet.com/sql/in.php , https://www.tutorialspoint.com/sql/sql-sub-queries.htm
+	
+	https://jsfiddle.net/arunslb123/gzaLydkd/ - horizontal-scroll-bar
+	
+Leetcode, Hackerrank, InterviewBit
+=============================================================
+
+
+cloud upload
+https://stackoverflow.com/questions/26196515/uploading-objects-to-google-cloud-storage-buckets-in-c-sharp
+
+
+Consuming WCF Service
+https://www.c-sharpcorner.com/UploadFile/4d56e1/how-to-create-and-consume-wcf-services/
+https://www.c-sharpcorner.com/UploadFile/0c1bb2/consuming-wcf-service-in-windows-application/
+ 
+
+RDL
+https://stackoverflow.com/questions/45848151/rds-rdl-rsd-in-ssrs
+
+
+https://stackoverflow.com/questions/1416900/how-to-disable-all-input-inside-a-form-with-jquery
+Storing and reading cookie
+serialize/deserialize, parse/stringify
+
+
+HTTP Post/Get
+https://www.w3schools.com/tags/ref_httpmethods.asp
+
+
+Async + await
+================
+https://www.c-sharpcorner.com/article/async-and-await-in-c-sharp/
+
+
+SITES
+=============
+https://www.c-sharpcorner.com
+https://www.dotnetcurry.com
+https://www.tutorialsteacher.com/mvc/model-binding-in-asp.net-mvc
+https://stackoverflow.com/questions/6201529/how-do-i-turn-a-c-sharp-object-into-a-json-string-in-net
+https://www.c-sharpcorner.com/article/sealed-class-in-C-Sharp/
+https://docs.microsoft.com/en-us/dotnet/api/system.web.httppostedfile?view=netframework-4.8
+
+
+SALIKE 
+========================
+->READ THE BOOK
+->READING AND WRITING/UPDATING  FILE IN C#
+->PLAYING WITH STRINGS AND ARRAY
+->ILIST/DICTIONARY/IQUERYABLE
+->MVC /SCAFFOLDING/RETURNING RESULT VIEW
+->READING FROM CONFIG
+->JSON.DeserializeObject OR SERIALIZE IN newtonsoft.COM
+->DFS AND BFS
+->EF 6,DB APPROACH
+->MVC LIFE CYCLE
+->WEB API/LINQ
+->SESSION/COOKIE/SCOPE
+->JQUERY OBJECTS/
+->SOLID PRINCIPLES
+->QUERY OPTIMIZATION - 
+->attributes like authentication/authorization
+=============
+
+
+Content type = image/jpeg
+
+
+=====================
+Significant uses of interfaces, abstraction in C#
+Event bubbling
+hoisting in C#
+https post vs put vs get
+restful api/system
+web api vs wcf-service-in-windows-application/
+string vs string builder
+margin border padding
+sdlc
+
+=========================
+delete dupl records using cte 
+ways to create object
+field vs property
+iteration in C#
+===================
+https://www.geeksforgeeks.org/difference-between-concat-and-operator-in-java/
+https://www.geeksforgeeks.org/c-sharp-string-vs-stringbuilder/
+https://www.c-sharpcorner.com/blogs/difference-between-converttostring-and-tostring-method1
+https://www.javatpoint.com/csharp-iterators
+https://www.guru99.com/wcf-web-api-difference.html
+https://stackoverflow.com/questions/12871710/what-does-the-css-rule-clear-both-do
+
+
+============================
+Public or private default class
+Abstract and interface
+Che
+Pivot
+Virtual
+Rank
+Mvc
+Sp vs function
+Dnn
+Override, overload
+Constructor
+Cursor
+Try catch va using
+Example of overloadad
+Ado. Net
+Data adapter vs reader 
+Connectionless vs connected
+
+===================================
+https://www.c-sharpcorner.com/article/csharp-streamwriter-example/
+================================
+https://blog.elmah.io/debugging-system-net-webexception-the-remote-name-could-not-be-resolved/
+=======================================
+Debug vs release 
+https://www.dotnettricks.com/learn/visualstudio/visual-studio-debug-vs-release-mode
+https://www.quora.com/What-is-the-difference-between-debug-and-release-mode-in-Visual-Studio
+http://net-informations.com/faq/net/debug-release.htm

@@ -1,0 +1,29 @@
+RQ:
+ react is UI library, no specific lib for data fetching
+
+redux used for global state management, better for client data like modal , theme
+for server data - asynchronous, we have issues like refetching, someone updated server datya, but ui is stale, performance optimization
+thatsy rq
+
+caching
+say we have 2 headers : normal api and rq api
+if w e click normal api, everytime we say a loading indicator is
+if we click rq api, we see loading indicator only for the first time
+
+reason is rq data is cached for a given key for 5mins by def, next time if same query is called, it refetches in background instead of fetching(isRefetching instead of isLoading).
+Refetching is done to avoid stale data issue in cache is server data might have updated.if data has changed, it will reflect new changed data in ui instead of going from empty screen to populated screen
+
+we can configure:
+cacheTime : 5s // after 5s query becomes inactive 
+staleTime : 5s //if we know the static data is not going to be changed and we want to void subsequent api calls and use stale data  //after 5s , query becomes stale from fresh
+
+refetchOnMount : true //reftch data is stale
+refetchOnWindowFocus : true// everytime tab loses focus and gain focus, api is called
+refetchInterval:2s //polling
+enabled : false // call api on event
+select: (data) =>{} //data transformatuon
+
+//json server 
+//rq with params
+//rq with Pagination
+// rq with infiniteQuery - takes an0other param , a fn thats boolean: hasNextPage

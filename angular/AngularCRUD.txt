@@ -1,0 +1,110 @@
+==========================================
+	Angular CRUD
+
+	ng new my-app --skip-tests true
+	npm install bootstrap@3 --save
+	ng serve -o
+	ng g c employees/listEmployees -- spec false --flat true
+	ng serve -o --base-href /emp/
+	ng build -prod --base-href /emp/
+
+
+	in index.html <base href="/">
+
+	Routing:
+	import RouterModule, Routes
+	routerLink, router-outlet
+
+	appl of base href
+
+	Forms:
+	NgForm from 'angualar/forms'
+	value-valid-touched-dirty using template refernce var( for ngForm)
+
+	either have selected (or checked) for input control or have ngModel; though both are totally diff i mean, dont use both together
+
+	for a disabled input element , it wont we rendered in NgForm.value
+
+	ngx bootstrap:npm install ngx-bootstrap --save
+
+	Form validn:
+
+	by dfeault  - angular > 2 addes novalidate attr to each elment,so as not to provide validn by angualr, u can add ngNativevalidate to form el for adding validn
+	cant assign  to a refrence or a var error: when u use #ref vara name same as name
+	use ref var for form to obtain valid prop
+
+	class bindingh:
+	[class.classname]="boolVar" ; if boolVar is true then classname is added else not 
+
+	use model property names for input to ensure consistency and validn:
+	<input [(ngModel}]="employee.name" #name="ngModel" [class.has-error]="name.invalid"> //see the relation bw name ref and where its used
+	when u enter a value to input both NgForm ref var and model var(employee) will give same value
+	use employee in sibmit form method now
+
+	ang safe navign op: *ngIf="obj?.prop"
+	rgex: pattern
+	Add required attribute dynamically in angular using prop binfing to required like:
+	[required]="condn"
+	Angular value(for string) vs ngvalue: for adding null without quotes
+
+
+	Direcrtives:
+	gen used for custom validators
+	Angular password and confirm password validation
+	[div  ="passwordGroup" // for red border in both imputs
+	Angular trigger validation manually -updateValueAndValidity()
+
+	FOR select option dropwon like 'select..' (value -1) and add validn if label selected:
+
+
+	import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
+	import { Directive , Input} from '@angular/core';
+
+	@Directive({
+		selector: '[appSelectValidator]',
+		providers: [
+			{
+				provide: NG_VALIDATORS,
+				useExisting: SelectRequiredValidatorDirective,
+				multi: true
+			}]
+	})
+	export class SelectRequiredValidatorDirective implements Validator {
+		@Input('appSelectValidator') defaultValue: string; //defaultValue is alias
+		validate(control: AbstractControl): { [key: string]: any } | null {
+			return control.value === this.defaultValue? { 'defaultSelected': true } : null;
+		}
+	<input appSelectValidator="test">
+	<div class="form-group"
+		 [class.has-error]="department.touched && department.errors?.defaultSelected">
+		
+	required is a validator
+	to register custom validator use providers	
+	use input selcetor for making directuve configurable
+
+	SERVICES:
+	saveEmployee(): void {
+	  this._employeeService.save(this.employee);
+	  this._router.navigate(['list']);
+	}
+
+
+	<div [ngSwitch]="employee.department">
+	  <span *ngSwitchCase="1"> Help Desk </span>
+	  <span *ngSwitchCase="2"> HR </span>
+	  <span *ngSwitchDefault> N/A </span>
+	</div>
+
+
+	Angular input change detection using property setter OR ngOnChanges
+	ngOnChanges keep track of state of  all Input() el vs setters tacks only specific or single property
+
+	Angular component communication
+	@input and @output property 
+	type of outpout prop is EventEmitter
+	#event param ij parent receive sthe payload from chidl
+	Call child component methods and properties using template reference variable
+	use viewchild for keeping/accessing  reg varaible in ts file
+
+	=======================
+	

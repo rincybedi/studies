@@ -1,0 +1,5 @@
+https://stackoverflow.com/questions/45848151/rds-rdl-rsd-in-ssrs
+	SSIS used for collecting data from sources like excel, csv, sql server, oracle and dump data into centralized database like warehouses
+	SSAS used to cerate a cube to get multidimension view of  data  
+	ssrs to view the anyalysed data
+	

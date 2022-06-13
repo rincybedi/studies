@@ -1,0 +1,65 @@
+react reconciliation and diffing algorithm using bfs
+....................
+ Angualr is mvc based framwork, react is a js librrary 
+ angaulr uses typescript , react uses jsx 
+ angualr can have testing using single tool(jasmine, karma),recat needs another tool for tetsing (jest, Enzyme)
+ angualr has 2 way data binding, react has one way bindinf
+ angualr provides full felge web appl, react is just used for frontend wireframes and for other functionaltiees, it requires complex integration
+angualr has Directives, trmplate and class based component, react can have class or fucntional based componenets 
+learning curve: angualr hard, react easy 
+modules, decorator, modules, pipe, DI, services, rxjs, aot, 
+recat  : props and state, recat router, redux
+angular  updates every 6 months, react IS STABLE
+ANGULAR BEING FULL BLOWN FRAMWEOK IS LARGE 
+rECAT USES vIRUAL DOM
+...............................
+
+application cache
+custom hooks
+Redux
+Shallow Compare  shouldComponentUpdate
+webpack
+testing
+jwt auth
+auth
+bitbucket
+jenkins
+solid
+design principles
+react- useReducer, HOC,RenderProps,useContext  , LifeCycle Components, Pure COmponenets(Memo) , Refs, Portals	
+
+fetch("/signup", {
+	method:"post",
+	headers:{
+	 "Content-Type":
+	},
+	body:Jspn.stringify({
+	}).then() ...
+
+	return (
+	<div  className="test">
+	</div>
+	)
+}
+
+------------CodeEvolution React--------------------
+npx create-react-app my-app
+npm start
+
+index.html  with <div id="root"></div> is the only file served by SPA
+Starting file for our app is index.js where root component ie App component is rendered in root element by ReactDOM
+App component represnt the view which we see in browser 
+ 
+ Stateless fucntional component(no this) vs statefull class component(lifecycle hooks )
+
+Jsx and React.createElement('h1', {id:}, 'test');
+
+Props are readonly, immutable, React function has to be a pure function 
+
+setState({count:this.state.count+1}, callbackFn) or 
+setState((prevState =>{count:prevState.count + 1}), callbackFn)
+
+setState is async function
+
+Ref forwarding : Parent passes ref to Child Component, Child Component forward ref from parent to native input element.this.ref variable points to native child element using fprward ref
+	

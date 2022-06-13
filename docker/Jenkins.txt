@@ -1,0 +1,7 @@
+Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.
+take lates build from master uin  git repo, build the soln, take backup codebase files and db backup , publish db scripts using Database project by comparing or generate script options, zip requirred files  and push, do config changes, ru n db script and test 
+
+in jenkins, we define stages for each phase abiove in pipeline and choose environment, plugins 
+
+docker run --rm -ti  -p 9090:8080 -p 50000:50000  -v jenkins-home:/var/jenkins_home  jenkins/jenkins:jdk11
+b110217d6d8540e889cf6ef8db2745ea

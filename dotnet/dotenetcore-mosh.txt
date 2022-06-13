@@ -1,0 +1,18 @@
+components consuming api
+dotnet cli
+webpack.config.cs - bundler for client side code
+it can compile minfied js / css file
+we state wehre our source code is , how it sd be processed and where u have to put it (dist folder)
+webpack.vendor - all 3rd part libraries 
+Inside dist:
+main-client.js - compilation of angular application into js
+vendor.js - compilation of 3rd part lib
+
+app.UseWebPackDevMiddlware with HotModuleReplacement: anytime a js/css file is changed the changes is pushed to browser without refreshing the webpack
+
+diff bw list and collection ,
+list allows to access item using index
+use collection for db fetched results , as we dont wanto to index anytime there
+dotnet ef
+dotnet add package [pkgname] 
+dotnet ef migrations add InitalModel

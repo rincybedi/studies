@@ -1,0 +1,7 @@
+Epicor Software:
+Develop large ERP tools/sofware which is industry specific used for managing entire business process.
+Designed for managing accountings, finance, Human resouces, customers, supply chain, inventory, distribution and manufacturing
+they aquired KBMax
+
+One of them is Kinetics:
+Kinetic Framework is an extensible business and data layer framework that generates typed C# domain model based off its users' SQL 2005 database schemas. Its code framework is a great way to get a custom development project off the ground on the right foot.
