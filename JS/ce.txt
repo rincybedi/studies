@@ -1,0 +1,30 @@
+ netxjs prerenders: generates html in advance for each page instead of it being done client side javascript
+ helps in seo and performance optimization(in react u need to ewait for js to download data from api etc to render compoent, wait time for user, we can show loading indicator)
+ seo - google crawler doesnt get js, index the page with all content in source code 
+in react, html is loaded with app tag and js then loads and mount hhtml components  or dome nodes inside app tag and then the ui is displayed and becomes interactive
+ in next, prerendered html(html is generated with required data and sent to browser) is displayed, js loads and makes page interactive, but html is there to interact with 
+check page source code 
+     
+static generation:
+html pages are generated at build time
+recommened
+page can be built once, cached by cdn and server to client instantly
+by def in nextjs 
+
+static generation will data:
+
+function UserList({users}) { // will receive users props
+
+}
+
+async getStaticProps(){ //to inject props, run only on server side, not client side(code wont be included in js bundle)
+    const data = await fetch(...) // all code typical to nodejs like access fs or querying a db
+    clg(data) //print data in srever side
+    return { //convention
+        props:{
+            users:data
+        }
+    }
+}
+getstaticProps is allowed onky in page and cant run from regular components
+pages(special for routin) vs components 

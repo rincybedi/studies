@@ -50,7 +50,7 @@ index.html  with <div id="root"></div> is the only file served by SPA
 Starting file for our app is index.js where root component ie App component is rendered in root element by ReactDOM
 App component represnt the view which we see in browser 
  
- Stateless fucntional component(no this) vs statefull class component(lifecycle hooks )
+Stateless fucntional component(no this) vs statefull class component(lifecycle hooks )
 
 Jsx and React.createElement('h1', {id:}, 'test');
 
@@ -62,4 +62,145 @@ setState((prevState =>{count:prevState.count + 1}), callbackFn)
 setState is async function
 
 Ref forwarding : Parent passes ref to Child Component, Child Component forward ref from parent to native input element.this.ref variable points to native child element using fprward ref
-	
+
+good ecosystem, component based architecture
+declative : tell react what u want and react will build the actual uI as oppsoed to imperative 
+efficient update and rendering of components
+
+
+fucntional vs class: no this, no state, no lifecycle hooks, 
+class A extends Component{
+	constructor(props){
+		super(props)
+		this.state={
+			message: "Test class A"
+		}
+	}
+	 
+ 	this.setState({
+		message: "Test class B"
+	},
+	()=>{
+		console.log("callback",this.state.message)
+	});
+
+	render(){
+
+	}
+}
+
+React can group multiple update calls into 1 for better performance, so when u have to update state based on previous: use fn:
+this.setState(prevState=>({
+	count:prevState.count + 1
+}))
+
+<test onClick={this.handleClick()} />/ if u call this method here, on page load, handleClick will be executed and nothing happens on click,if we change the state in method, it will create infinte loop
+
+Event binding in class component:
+this is undefined inside method handler
+  
+1. <button onClick={this.handleClick.bind(this)}></button> //multipe renders  
+2. arrrow <button onClick={()=>this.handleClick()}></button>
+3. this.handleClick = this.handleClick.bind(this) in constructor
+4. handleClick is arrow function
+
+List and keys:
+when item is added at top, remaining subtree is reserved intact wth keys
+
+Lifecycle method:
+Mounting, Updating, Unmounting, Error handling;
+Mounting: when instance of component is created and insefted into DOM : constructor, getDerivedStateeFromProps, render, componentDidMount, componentDidUnmount
+Updating: when component is re-rendered due to state or prop changes: getDerivedStateeFromProps,shouldComponentUpdate, render, getSnapshotBeforeUpdate, componentDidUpdate
+Unmounting: componentWillUnmount - removing event handlers, cancelling network request, invalidating timers
+
+Error:  componentDidCatch, getDerivedStateeFromErrors
+
+Pure component:implement shouldComponentUpdate with shallow state and props comparison, only if prevState != currentState, component will rerender
+Regular component doesnt implement shouldComponentUpdate method and always returns true by default
+SC: for primitive types , same value
+for complex types : should point to same reference
+a = [1] b  =[1] c=a , a SC c = true, a SC b = false
+
+React.Memo:HOC, like pure comp in FC
+forwarding refs: passing ref from parent to child, in child use HOC, React.forwardRef(props, ref)
+
+Portals:
+placing dom outside root element
+
+Error boundary: any error life cyclemethod implenetd
+static getDerivedStateeFromError(error){
+	return hasError : true
+}
+
+HOC:share common functionality bw componenst instead of duplicating code between components
+const EnhancedComponent = HOC(originalComponent)
+
+const UpdatedComponent = originalComponent=>{
+	const NewComponent = () => {return  <OriginalComponent commonState, commponHanlder/>>}
+	return NewComponent
+}
+
+ClickCounter:
+this will receive commonState, commponHanlder as props
+UpdatedComponent(ClickCounter)
+
+Render Props:same use as HOC
+use props whose value ia fucntion to control what is rendered by the component
+<User render ={(isAdmin)=> "admin" : "guest"}
+render(){
+	<div>
+	{this.props.render(false)} // this will control what is displayed by the component
+	</div>
+}
+
+
+COunter : state and handleCount and return this.props.render(state, handleCount)
+App js 
+<Counter render =(state, handleCount) => <ClickCounter state, handleCount>
+<Counter render =(state, handleCount) => <HoverCounter state, handleCount>>
+
+COntext:
+to avoid prop drilling  in nested tree
+const UserContext = React.createContext()
+UserContext.Provider
+UserContext.Consumer, wrap the component which needs context value with UserProvider,
+in wrapped component, user UserConsumer and an arrow function that receive context value
+can be nestted
+
+Hooks:
+useState with prevState :setCount(prevCount => prevCount +  1)
+useEFfect: called after every single render
+with [], only once on component load,
+dependecy array to conditionally render, in class:
+componentDidMount(prevprops, prevstate){
+	if(prevState.count !=== this.state.count){
+		...
+	}
+}
+with component lifecycle hooks, code was spliited across different lifecycle, mixing of logic
+useEFfect with cleanup : like componentWillUnmount
+
+useEffect(()=>{
+	..
+	return () =>{ window.removeEventListener("click")}
+})
+
+
+useCOntext : only change using context Consumer
+const user = useCOntext(UserContext)
+
+
+useReducer:
+Array reduce() :
+array.reduce(reducer, 4)
+
+[newState, dispatch] = reducer(currentState, action)
+useReducer(reducer, initialState)
+multiple logical group of states are changing
+
+useCallback:
+returns memoied or cached version of callback function that only changes if any of dependencies is changed
+
+useMemo:cache the result of fucntion
+
+
