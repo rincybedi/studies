@@ -1,0 +1,15 @@
+redis vs mongodb
+microservices
+load balancing
+cluster nodes
+event based programming
+web socket
+push notification
+client to server/
+http vs web socket
+patch
+caching ways
+docker vs vm
+shell cmds
+js event propagation : bubbling and capturing, by default?, e.stoppropapagton
+project - why mongo?

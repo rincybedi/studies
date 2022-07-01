@@ -19,7 +19,9 @@ Design patterns:Gang of Four
 	bridge - decoupel abstraction from implenetation so that two can vary indpendtly(uses interface)
 	
 	Adapter- bridge bw 2 incompatibel interfaces
-	Itarget(getProducts) , Adapter(implmentibg Itarget and caling Adaptee method and retuning products(with syscode)), Adaptee(which has syscode)
+	Itarget(getProducts) , 
+	Adapter(implmentibg Itarget and caling Adaptee method and retuning products(with syscode)),
+	Adaptee(which has syscode)
 	https://www.tutorialspoint.com/design_pattern/adapter_pattern.htm
 
 	behaviorla-communication bw objects

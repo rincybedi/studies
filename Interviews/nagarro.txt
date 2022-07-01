@@ -1,7 +1,0 @@
-1. Accomdation and Travel Reimbursement
-2. Work timings 
-3. WFH
-4. System Details/ wfh setup/ chair
-5. Project  React
-6. Medical Insurance
-7. Location

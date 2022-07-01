@@ -4,8 +4,8 @@
 in react, html is loaded with app tag and js then loads and mount hhtml components  or dome nodes inside app tag and then the ui is displayed and becomes interactive
  in next, prerendered html(html is generated with required data and sent to browser) is displayed, js loads and makes page interactive, but html is there to interact with 
 check page source code 
-     
-static generation:
+ 1   server side rendering :server send html on each request without neededing client side js
+2 static generation:
 html pages are generated at build time
 recommened
 page can be built once, cached by cdn and server to client instantly
@@ -28,3 +28,23 @@ async getStaticProps(){ //to inject props, run only on server side, not client s
 }
 getstaticProps is allowed onky in page and cant run from regular components
 pages(special for routin) vs components 
+dev vs prod
+getstaticProps will run at build time but in development, run on every req
+
+nextjs is react framework for production
+build:.next folder >server>pages all htmls shown in output are here
+eg:
+user.html 
+user.js cant be sent to browser, but are transformation of pages and compoennt returned to our app
+user.json data returned from getStaticProps
+
+static>chunks>pages contain js files that can be sent to broser for hydration
+
+Page, size and First load js
+eg : / 256b 67kb(256b + 66kb)
+when we goto index.js of Pages(root page), it downloads 256b + 66kb
+first load js shared by all: 66kb :
+chunks/fraemwork.js - react dom modules
+main.js - all our components
+webpack.js
+css.js

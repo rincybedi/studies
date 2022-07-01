@@ -17,3 +17,197 @@ In MS, each service is independent and loosely coupled, they follow min share po
 In Soa, we have service consumer and providers an dthey talk via ESb ie  Enterprise Service Bus
 In SOA, ESB could become a single point of failure which impacts the entire application. Since every service is communicating through ESB, if one of the services slow down, could cause the ESB to be clogged up with requests for that service. On the other hand, microservices are much better in fault tolerance. For example, if there is a memory leak in one microservice then only that microservice will be affected. The other microservices will continue to handle requests.
 
+---------------
+Distrubed System and 3 principles:
+1. Single Responsibility principles
+2. No Single Point of failure
+3. No Bottleneck Princile
+SD: 5 steps: Reader/Writer
+1 Requirement Analysis
+Functional: read and wirte data into DB
+Non Functional:highly available, highly scalable
+2. API Design : crud methods
+3. Model Design: Table in DB
+4. High Level Design: Diagram
+5 . Scaling : redundant servers, load balancers and databases, caching
+
+Scalability = system can handle more no of requests
+Horizontal vs Vertical Scaling:
+more machines vs big machine
+loadbalancing is needed
+Resilient to single point of failure 
+in Horizontal: network calls bw servers(remote procedure calls RPC)- slow, in Vertical - interprocess communication- fast
+Data inconsistency in Horizontal:  say server2 sends data to s5 and s5 to s1, and if the transaction needs to be atomic, these server must be locked
+in vertical: hardware limitations
+
+
+load balacing:
+Consistent hashing: for m requests say 0 to m-1
+and say 4 servers s0 to s3, we provider a hasing fucntion, uniformly random
+h(r1) say r1 is id of request
+h(r1) => some no % 4 => s3 
+h(4) = 3%4 => s3
+for x request, we have x/n loads
+Load factor : 1/n
+but? what if we want to add a new server s4, now all the prev request will be messed up, as the has function will give different value
+if we draw a pie , no of bucket changes is too much,sometimes upto the search space, but whtas the issue?
+request id like user id doesnt change, so say user1 is always serverd by s3, cant we cache this ? Yes, but if we add a server, caching goes waste
+
+now consistency hashing:
+draw a piw, along with hasing request, hash servers too, so now say each server gets 1/n equal request theoretically
+if we add a server: very less bucket change
+if we remove a server: very less bucket change
+but what if practically one of ther servers is getting almost all requests? this may happen for less no of servers, for more no of servers we can expect uniformity
+
+use multiple hash functions
+say s1 is pointed to 10, 30 and 50 by 3 hash fucntions
+now chances are each server will be equally able to handle nearest requests
+
+
+Message queue:
+say pizza network has 4 center(server) and 1 goes down and we need to redirect client for failed center to other centers
+we keep a notifier which check heartbeat of center every 10s
+if found dead, find all failed server request from db and send accross diff servers:
+eg aws sqs, rabbitmq, 
+creating vehcile group by year: lots of vehicle in db, run bg job not cron, but aws sqs to tag all those vehicle with year with this vehicle group
+msg queue takes task ,persist them, assign to server, wait for compleion, if failed , assign to new server
+encapsulation notifier, load balancing, persistence
+
+Database as message queue:Antipattern
+suppose servers need to talk to each other keeping db in between, db cant talk back to server, it can only recive, so server needs to do polling, check if any entry has been adedd to the db or not - expoensive, if we use long intervals, server will get msg very late
+also, if we add a new server, db again gets loaded
+solution : use message queue
+msg queue push the msg to other server, instead of server asking, it pushes  
+
+Monolith vs Microsrevices:
+we can also scale monolith
+microserver - single responsibility
+easy ci/cd
+loose decoupel
+each service can have their own dedicated database
+we can module out all services based on some concern
+client isnt directly connected to microserver,but a gateway talks to them
+singel point of failue if one server is down in monolith, entrire services collapse
+
+Sharding:
+in db
+for performance optimization
+horizontal partioning data based on some field, say user id
+1- 100 user id is stored in shard1 
+101-200 to shard2
+consistency -whatever data is updated , can be read
+availablity - db sdnt be down or crashed
+what sd u shard upton? in tinder based on location: find me all users in city X
+
+cons:
+1. Joins between shards - multiple index bw shards
+2. fixed no of servers - overcome by hierarcial sharding
+
+Caching: In memory
+avoid computations
+reading multiple times, save network calls
+why not store all data in cache? costly, if size increases, makes no sense
+store infinte data in db and most relevant data in redis
+to store relevant data, we need to predict data
+1. when to we make an entry in redis
+2. when we evict data out of cache
+ 
+loading and evicting is called cache policy
+cache performance depends on cache policy
+  
+LRU: make entry to top of cache and remove from botton(least recent)
+sliding window principle
+cache miss- hit cache and it says i dont have data, why make cache call then
+write through - update cache first then db, but what if cache2 is invalid?
+write back - update db first and mark cache as invalid or delete key
+
+
+No sql vs sql:
+Pros:
+1. Flexible schema - new field addition in sql may require locks to perform consistency
+2. built for scale, uses horizontal partition or sharding inbuilt
+3. Better aggregation and metrics
+4 Insertion and retrieval for entire document avoiding joins
+
+cons:
+1. Not built for updates, what is node2 has inconsistent data, its not ACID compliant
+2. Not read optimized, eg get age of all emp: scan through each field of document and for each doc
+3. Relations missing, Referential integrity is not implicit, cant force a constraint
+4. Joins are hard
+
+
+Joins :
+db.getCollection("unitstats").aggregate({
+$lookup: {
+	from: "units",
+	localField: "unit",
+	foreignField: "_id",
+	as: "unit"
+},
+}, { $unwind: "$unit" },
+{
+$match: {
+	$and: [
+		{ "unit.vin": "1NXBR32E76Z631060" },
+		{ "category": "View Newly Added Vehicle Details" },
+		]
+		}
+		}, {
+		$project: {
+		"unit.vin": 1,
+		listing: 1,
+		bids: 1,
+		status: 1,
+		updatedAt: 1,
+		}
+})
+
+Instagram: System Design
+a. Requirements:
+1. Upload image from a mobile client'- native app or web app, network , storage space
+2. User follow other users - only connected or explore
+3 generate a feed of Images - how often refresh, expected latency 
+4 Scale: 10 million users, eventual consistency(not needed immediately adter upload) 
+
+10 million users montly basis
+2 photos per month on average
+5 MB per photo
+
+10^7 * 2 * 5  = 10^ 8 = 100 million MB = 100TB, choose data model for this storage, reliable and efficient
+
+b. Data model
+Table:
+Users  Photos  Followers 
+
+Choice of db: relationsal
+Reason: we can see cmapping bw models,
+ User to followers - many to many relations
+ User to Photos - one to many
+we will also mostly have to fetch photos of a user - relational pattern
+
+
+Users :                                           Photos - kinda lookup, storing only metadata           Followers - 1 D flow, user1 cant follow user2 if user2 doesnt follow user1
+id : PK, int, serial							  id : PK, int, serial	                                 from: FK referencing user.id
+name: string                                      user_id:FK to user.id                                  to: FK referencing user.id
+email:string                                      caption:string
+location: string                                  location: string
+												  path:string //to a distributed system
+
+
+HLD:
+-App Server (handle crud)start with monolith, move to microservice)
+-more user reading feeds than uploading image, read heavy system(ratio of reads to write), add read replicas of Metadata DB for scaling'
+-split app server to read and write server
+-place cache bw read and db server
+-need a load balances for scaling users
+-horizonal scale db and app servers 
+
+
+																				Newfeed Generation Service
+																						                       
+															App Server(read)--read-----------Cache(redis)		----     Metadata DB
+		Mobile	Client				Load Balancer							
+															App Server(write)	--store metadatab to db              Distributed Object Storage(S3)
+																			    --upload to s3 --- Message queue(sqs)
+
+

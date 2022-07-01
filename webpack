@@ -1,6 +1,7 @@
 why is webpack needed?
 There are two ways to run JavaScript in a browser. First, include a script for each functionality; this solution is hard to scale because loading too many scripts can cause a network bottleneck. The second option is to use a big .js file containing all your project code, but this leads to problems in scope, size, readability and maintainability.
 
+https://www.sitepoint.com/using-redis-node-js/
 https://webpack.js.org/concepts/
 https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c
 https://www.loginradius.com/blog/engineering/lazy-loading-in-react/
@@ -19,10 +20,10 @@ https://dzone.com/articles/easy-javascript-part-13-four-ways-to-create-object#:~
 
 https://www.freecodecamp.org/news/server-side-rendering-your-react-app-in-three-simple-steps-7a82b95db82e/
 
+https://blog.logrocket.com/design-patterns-in-typescript-and-node-js/
+https://www.javatpoint.com/design-patterns-in-java
 
-
-
-
+aws message queue
 
 
 Virtual dom
