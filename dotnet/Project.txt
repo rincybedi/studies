@@ -1,0 +1,191 @@
+MI
+===========================	
+	Dnn -  feature rich cms(evoq):
+	pages- anme, title, oarentpage,permissions , theme, usercontrol
+	Users- details, make superuser, reset password, roles
+	Roles- amdin, registered user, rep copmany user, tcf user
+	themse
+	sites- multiple bindings in portal alias- siet settings
+	any time we want a new site using diff them, we mnake entries in site iwth portal iddnn add resp folder of portal and there we can have specific themes	
+
+
+	mmeberarea- 
+	Users Maint-  name , role, company and branch
+	tcf
+
+	Hvac industry - heatong , ventialtion and air conditoning productSub
+	kendoTreeview-
+	Option : 
+	FanSize - 120, 200, 200
+	FanClass-	
+	Arrangement
+	Rotation
+	DIscharge-
+	Accesories
+	Buid Parts- Bearings, Shaft, Impeeler, Funnel
+	Relacement Prats Products	
+
+
+	Product - many props like code, Price type, base price multiplier, lead time datys
+	Rules, additional charges, properties
+
+	Option - control type, rule var name
+	Value - Price tpe, Multipler
+
+	Global Optiosn
+	Images
+	Quick Ship programs
+	Discount Catergory
+	Custom tables, rules
+
+	emaulte - company + users
+	each user work in their branch, diff from comoany primary branch(corporate office)
+
+	spec-
+	user slectes its companty/branch , add project
+	rep in add proje-biiling scetion -> Primary branch
+	LIs- product config, or bulk selection
+	LIs in release - diff status of release	, sa approval for rekease
+	CS- C-Contacts Honda/Suzuki- Nexa-Endusers
+
+	SA-special authorization - Customerbasi of designdate
+	discount % or amount - status - request(new), view sa, delete sa
+	sa review - filter by sa staus - approve disocunt % or mult for project or items,a dd noets
+
+
+	oredr review and sa review only to admin, customer service not to customer
+	orders- approved, pending order( released),ob hold,change request
+	CS- reviews order, approve , decline it with some notes, 
+	versioning - query string
+
+	config:key="perfoEndpoint", "balckboxurl"
+	ResponseEnvelope
+	create using HttpWebRequest.Create(endpoint) object,set contnet typ, method
+	using object.getRequestStream(), we post the request data ny serializalizubg
+	GetReposneStream - deserializing
+
+
+	reports- SubreportProcessingEventHandler
+	dynamic ssrs - oredrby , Grid columsn, lineitemsids, oredrid, xml column model 	
+	params using ahstable
+	Localrteport obj - Micorsoft.reporting.Webforms
+	set reportPath , datasources, apramters	, get reporrtTypes, render(pdf)
+	using itextSharp, merge pdfs in a Document obj
+	
+	epplus for excel
+
+	CustomAuthorizeAttribute -sealed :AuthorizeAttributeBase
+	overrid IsAuthorized
+	isUserInRole	 
+
+	I is an American owned HVAC company.It goes to market under 4 to 5  official brands.Metallaire  supllies air quality products, dampers, fans etc.
+TCF: It is a manufacturere and leading designer insdustry of high quality  custom, semi custo and statndar fans ranging frm heavy duty industrial 	to commercial fans for HVAC industires
+
+Replacemnet Parts / Spare Parts like Motors & Drives, Impellers, Belts, Bearings, 
+Axial fans  for low pressure and high airflow  like in computers
+
+Centrifugal fans for  high pressure systems like air conditions 
+
+Maint Pages: Each page is encapsulation of usercontrol ie ascx , resp js and css files. Provides basic fucntionlities like Add, Columns, Export, Print, Search, Pagination, CRUD operations and many more
+
+We use KendoGrrid for maintenance,A kendogrid uses kendodatasoucre which defines url for CRUD operations and has Schema contaning fields, their types, validation events, filters etc
+ We define different configuraton options for a kendo Grid like sortable, columnMenuInit, databound , toolbar, edit events etc. These events could be custom methods
+ 
+ SA 
+ ..........................
+ : Customer before sending Order to release request for  specia Discount in % or $ amount on Total List Price,  Customer Service reviews this request and approve/reject this request. There are some cases where a Project must have SA approved before any of its item is sent to release. It maybe on Product or Value or Shipping  Terms of Project.
+ So we have table :
+ 
+ SMR :
+ Id,
+ ProjectGuid,
+ SmrStatus //FK
+ RequestedByGuid
+ RequestedOn
+ requestedDiscount%
+ approvedDiscount% on TotalList Price of Project
+ 
+ //if all items are approved, project smr is approved
+ lineitem:
+ Id, 
+ LiItemGuid
+ 
+ say if a project has 2 items:
+ 1 when project multiplier is updated, prices using that mult is processed for each item(say 10% discount)
+ 2 when an item mult is updated, for new net price, total discount and % are calculated
+ 
+ 
+Commission:
+.................................
+So we have 2 types of billing in Project: Direct Bill and Buy/Resell
+In Buy Resell, Rep buys orders from Tcf and sells to Customers
+in Direct Bill, Tcf directs charges Reps' customers.
+Pricing for a product is structured Tcf and Rep both makes a commission. 
+Commission Schedule: Rep Cost Vs Commission entry against each Sell Multiplier, Sell Mult is editable.
+
+Notification:
+.................................
+When a LI/Project is added
+When a SMR is created or its status changes
+When a release is created or its status changed
+
+
+We have table: COnversation, COnversationAttachment and COnversationNote:
+For each conversation attachment or note , an entry is made in ConversationNote table with Conversation FK Guid.
+We have ConversationType for Project / Sa and order.A Sp is made to read top n of those ConversationNotes from each types using joins and union.
+
+
+ Authorization of Pages and Accessibility to different functionalities:
+ ...................................
+ SubMenu : 
+ SubMenuName , SmartUrl etc
+ JoinUserGroupSubMenu : UserGroupGuid , SubMenu
+ 
+ When a user logs in , AlphaCPQ_GetListOfAuthorizedSubMenus takes its roles, IsSuperUser, MenuTypes and retuns list of auth menus
+ 
+ if we enter a url , we check in codebehind is for that smart url, user is authorized or not.
+ 
+ SA Review and Order Review are hidden for diff roles
+ 
+ Several apis arestricted to roles, for that we have CustomAuthorizeAttribute : AuthorizeAttributeBase and it takes role from config, overrides virtual method IsAuthorized
+ 
+ Reports
+ ........................................................
+ 
+ So we have a reports page, a usercontrol page where we have default and custom templates.
+ For a default teplates, we just have rdl whose design is static, has a datatsource an datatsets, a dataset is basically a sp with some parameters, when we click on Generate report, we open a Report page, which has codebehind to process report.By process report we mean, identifying which report , what all items are needed to show, for which brand, passing paramters to datatsets and rendering report from ssrs server as byte array and storing it in physical location
+ 
+ For a custom template, we can have headers , pricing section, grid columns section configurable, sorting and display order, we have used kendoList for same
+ We have a XMLModel  in server side, we serialize this complex model to xml string  against each template
+ 
+ 
+	Microsoft.Reporting.WebForms;
+	LocalReport obj;   Report Builder' tool/wizard;
+	create a ReportPage.aspx page having ReportViewer Control,
+	shared datasource - for all reports -.rds
+	
+	
+	LocalReprot obj;
+	we copy the rdl to a temp folder path and extract dataset and params using xml deserializer
+	
+	set obje.ReportPath ;
+	obje.SubreportProcessing ;
+	ReportDataSource rds = new ReportDataSource();
+                rds.Name = ds.Name;
+                rds.Value = dt;
+                report.DataSources.Add(rds);
+	report.SetParameters();
+	report.Render("PDF", theDeviceSettings); 
+	
+	 XDocument xmlDoc = XDocument.Load(tempRdlFilePath);
+	 XElement.Remove() 
+	 For every checked section, we will have bool prop IsVisible, retrive this for every prop to remove XmlElmenet and save the doc back to disk as u process fuirther 
+	 
+	 using itextSharp, merge pdfs in a Document obj
+	 using EpPlus package and Excelreader for xls to convert to List<Model>
+	 .......................
+	 NewsFeed Maint and Dashboard
+	 : [FN_AlphaCPQ_CheckIfArticleIsAccessible]
+	((N.CreatedOn > =  @LastVisitedOn) OR (N.LastUpdate > =  @LastVisitedOn))
+	maint - desc, security access, link/module/iframe/youtube thumbnail file
+	 

@@ -1,0 +1,39 @@
+SetTimout and array
+first unique element in the array
+arch of nodejs
+autosuggestion like query
+find duplicate elements in db  using groupby
+elastic search over mongodb
+how can u call 2 mthods at parallel
+do some operation only if all async method are done executing : Promise.all and 
+what if u want all promises to be successfull : 3 apis in parallel: success - response, else throw error
+react virtual dom
+render 
+jsx
+node -  file upload
+
+1.React Virtual dom - https://reactjs.org/docs/faq-internals.html
+2.Event propagation  and default behaviour - https://www.freecodecamp.org/news/a-simplified-explanation-of-event-propagation-in-javascript-f9de7961a06e/#:~:text=Event%20propagation%20is%20a%20way,a%20web%20browser%20are%20nested.
+3.Ways to implement Caching -https://www.section.io/engineering-education/lru-cache-implementation-in-javascript/
+4. Microservices based architecture
+5. Callback vs aysnc await vs Promise -https://javascript.plainenglish.io/callback-vs-promise-and-async-await-1e46bc1780f4
+6. fetch vs Axios -https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#:~:text=To%20send%20data%2C%20fetch(),stringify%20method
+7. Axios Interceptor and usage - https://medium.com/swlh/handling-access-and-refresh-tokens-using-axios-interceptors-3970b601a5da
+8. Event look in js - https://www.javascripttutorial.net/javascript-event-loop/
+9. Constructor function code in Js  - https://www.javascripttutorial.net/javascript-constructor-function/
+10.Prototype inheritance in Js - https://www.javascripttutorial.net/javascript-prototypal-inheritance/
+11. Call vs apply vs bind - https://stackoverflow.com/questions/15455009/javascript-call-apply-vs-bind
+12. How can u perform method borrowing in js - using call()
+13. Lazy loading in react - https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c
+14.why is webpack needed?
+There are two ways to run JavaScript in a browser. First, include a script for each functionality; this solution is hard to scale because loading too many scripts can cause a network bottleneck. The second option is to use a big .js file containing all your project code, but this leads to problems in scope, size, readability and maintainability.
+15 ways to create object - https://dzone.com/articles/easy-javascript-part-13-four-ways-to-create-object#:~:text=There%20are%20four%20ways%20to,as%20using%20a%20function%20constructor).
+16 SSR - 
+
+https://www.freecodecamp.org/news/server-side-rendering-your-react-app-in-three-simple-steps-7a82b95db82e/
+17.Critical rendering path -https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path#:~:text=The%20Critical%20Rendering%20Path%20is,render%20path%20improves%20render%20performance.
+18 how does settimeout and promises work in event loop
+19 uses of typescript, how it helps
+20. Object.create() usage - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+21. Design patterns 
+22. Webpack usage

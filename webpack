@@ -1,0 +1,103 @@
+why is webpack needed?
+There are two ways to run JavaScript in a browser. First, include a script for each functionality; this solution is hard to scale because loading too many scripts can cause a network bottleneck. The second option is to use a big .js file containing all your project code, but this leads to problems in scope, size, readability and maintainability.
+
+https://www.sitepoint.com/using-redis-node-js/
+https://webpack.js.org/concepts/
+https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c
+https://www.loginradius.com/blog/engineering/lazy-loading-in-react/
+https://nextjs.org/learn/foundations/from-javascript-to-react/updating-ui-with-javascript
+https://fauna.com/blog/comparing-spas-to-ssg-and-ssr
+https://blog.logrocket.com/next-js-vs-create-react-app/
+https://github.com/LisaHJung/Beginners-Crash-Course-to-Elastic-Stack-Series-Table-of-Contents
+https://blog.bitsrc.io/4-ways-to-reduce-cors-preflight-time-in-web-apps-1f47fe7558'
+https://www.pveller.com/oauth2-with-passport-10-steps-recipe/
+https://auth0.com/intro-to-iam/what-is-oauth-2/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+
+https://dzone.com/articles/easy-javascript-part-13-four-ways-to-create-object#:~:text=There%20are%20four%20ways%20to,as%20using%20a%20function%20constructor).
+
+
+
+https://www.freecodecamp.org/news/server-side-rendering-your-react-app-in-three-simple-steps-7a82b95db82e/
+
+https://blog.logrocket.com/design-patterns-in-typescript-and-node-js/
+https://www.javatpoint.com/design-patterns-in-java
+
+aws message queue
+
+
+Virtual dom
+Critical rendering path
+EVent loop in browser and nodejs
+settimeout and promises in event loop
+
+ES:
+nodes in cluster , data in shrads
+shrads:
+1 increases performance by scaling
+2. Node failure - single point of failure
+crud:
+c: put indexname
+index a doc :
+post index/_doc{
+    "field" :value
+}
+r: get index/_doc/1
+u -
+post index/__update/1{
+    doc:{
+        field:value
+    }
+}
+d - delete index/_doc/1
+
+precision vs recall, ranking(Scoring)
+hits in result
+get index/_search
+{
+    query:{
+        //Full text queries
+        match/match_phrase:{  //proximity and all terms in order
+            category:"Entertainlement"
+        },
+        multi-macth:{
+            query:"Michelle obama",
+            field:["headline^2, "short_description] //per field boosting.
+            type:"phrase"
+        }
+    },
+    aggs:{
+        popuplar_in_entertainlement:{ //array of buckets with key and doc_count
+            "significant_text" :{
+                "field":'headline'
+            }
+        }
+        category_mentions":{
+            terms:{
+                field:"category",
+                size:100
+            }
+        }
+    }  
+}
+
+Combined query : bool queries
+1 must
+2. must_not
+3. should(good to have) docs dont need to micth this clause to get hits, but once they do, they get a higher score and will be shown at top
+4 filter(yes/no categories) like all article of michelle(must) in certain range(filter by range )
+
+query:{
+    bool:{
+        must:[
+            "match_phrase" :{
+                headline:"michelle obama"
+            },
+            {
+                match:{
+                    category:"politics"
+                }
+            }
+        ]
+    }
+}
