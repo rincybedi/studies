@@ -1,0 +1,44 @@
+with docker u solves problem - it works on my mc but when deployed it diesnt work
+
+App+ Dependencies + Configuration
+
+here we pack our application with all its dependencies and configuration into a bundle called images
+and then we can deploy this image into a diff machine with only 1 command.This command will load our app with all its dependencies into container 
+
+Ex: sql server for linux comes as docker image, u pull this image from docker registry
+then u run this image in a container by mapping a port in our container to port in our host machine
+docker run -p 1433:1433 -d imagename
+this port no is use when running sql server
+
+docker ps =- list all containers that are running
+
+Nana
+================================================================
+before container : Development
+every dev whether on linux or mac has to install some services to run any project say postgress sql and redis
+configure these services in their local environment
+depending on which os they are using, installation process would be different
+Many steps where one could go wrong
+
+after container :
+no need to install any services directly 
+container has its own isolated environment - own os layer with linux based image
+Everything packaged in one isolated environment
+One command to install the application, regardless of os
+Run same app with different versions
+
+
+before container : Deployment
+dev team produces artifact(jar files) with set of instructions for how to configure and setup those artifact in server
+Operations team will setup the environment in server tp deploy those applications
+Problem : 
+Configuration on server needed
+Dependency version conflict
+Misunderstanding bw dev and ops team as Everything is in textual guide
+cases when devs forget to tell anything important about configuration or ops team misinterpreted some instructions
+
+After container : Deployment
+Dev and ops work together to package app in containers
+No environment configuration is needed in server  except to setup docker runtime in server
+only need to run docker cmd to pull  that app or container image stored in some repository and run it
+

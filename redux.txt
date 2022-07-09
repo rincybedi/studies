@@ -1,0 +1,13 @@
+redux is a predictable state container for js applications
+predictable : todo list - item can go from pending to completed state, we can easily predict state transitions  and time travel
+
+why need redux if component hold state?
+to avoid lifting state using props (prop drilling) up the component tree if any other component needs the same state like username
+when there are multiple components which need common state, state management can be difficult
+in redux - state is contained outside of the component 
+we have context to solve this
+
+redux 3 concepts:
+Store,
+Action 
+Reducer 
