@@ -22,6 +22,7 @@ Design patterns:Gang of Four
 	Itarget(getProducts) , 
 	Adapter(implmentibg Itarget and caling Adaptee method and retuning products(with syscode)),
 	Adaptee(which has syscode)
+	Itarget(getProducts) , Adapter(implmentibg Itarget and caling Adaptee method and retuning products(with syscode)), Adaptee(which has syscode)
 	https://www.tutorialspoint.com/design_pattern/adapter_pattern.htm
 
 	behaviorla-communication bw objects

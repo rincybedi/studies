@@ -51,6 +51,7 @@ Starting file for our app is index.js where root component ie App component is r
 App component represnt the view which we see in browser 
  
 Stateless fucntional component(no this) vs statefull class component(lifecycle hooks )
+ Stateless fucntional component(no this) vs statefull class component(lifecycle hooks )
 
 Jsx and React.createElement('h1', {id:}, 'test');
 

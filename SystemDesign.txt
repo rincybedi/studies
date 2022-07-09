@@ -17,6 +17,7 @@ In MS, each service is independent and loosely coupled, they follow min share po
 In Soa, we have service consumer and providers an dthey talk via ESb ie  Enterprise Service Bus
 In SOA, ESB could become a single point of failure which impacts the entire application. Since every service is communicating through ESB, if one of the services slow down, could cause the ESB to be clogged up with requests for that service. On the other hand, microservices are much better in fault tolerance. For example, if there is a memory leak in one microservice then only that microservice will be affected. The other microservices will continue to handle requests.
 
+<<<<<<< HEAD
 ---------------
 Distrubed System and 3 principles:
 1. Single Responsibility principles

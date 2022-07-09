@@ -1,0 +1,16 @@
+agile:
+ek story - ek idea - ek process - form
+- tasks hrs daily
+
+billing client everyday
+stories in block
+5 story ptr in 1 sprint - 2 weeks
+2-3 ptr - 1 week
+bug - time
+new module - feature
+
+atomic habits
+
+
+
+

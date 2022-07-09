@@ -1,0 +1,16 @@
+
+Eager vs lazy loading in LInq to sql:
+EF wont load related data until we iterate over them or try to acces them (n+1 queries)
+Dept-> Employee
+Say we want to print employee in each dept(we have 3 records)
+there will total 4 queries: 1 for Depts retrieval and 3 for each dept ' employee retrival
+
+if we need eager loading, we canuse data load options:
+ DatataOptions.LoadWith<Dept>(d=>d.Employee) and attach this options to dbContext.DatataOptions
+
+ or use projection like :
+ var res = dbContext.Dept.Select(d=> new{DeptName= ...,EMployees=...})
+
+Ado.net vs EF performance
+IEnumerable vs IQueryAble
+Pagination using EF
